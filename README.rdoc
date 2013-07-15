@@ -1,19 +1,16 @@
-= X0Y0
+= Postman
 
-Skeleton project, empty but with all the stuff I need to begin with =)
+Support app
 
-All you have to do for start using it is change all the X0Y0 (and x0y0) strings
-with the name of your application...
+=== Build Status {<img src="https://secure.travis-ci.org/francocatena/postman.png"/>}[http://travis-ci.org/francocatena/postman]
 
-=== Build Status {<img src="https://secure.travis-ci.org/francocatena/x0y0.png"/>}[http://travis-ci.org/francocatena/x0y0]
+=== Dependency Status {<img src="https://gemnasium.com/francocatena/postman.png?travis"/>}[https://gemnasium.com/francocatena/postman]
 
-=== Dependency Status {<img src="https://gemnasium.com/francocatena/x0y0.png?travis"/>}[https://gemnasium.com/francocatena/x0y0]
-
-=== Code Status {<img src="https://codeclimate.com/github/francocatena/x0y0.png"/>}[https://codeclimate.com/github/francocatena/x0y0]
+=== Code Status {<img src="https://codeclimate.com/github/francocatena/postman.png"/>}[https://codeclimate.com/github/francocatena/postman]
 
 == (The MIT License)
 
-Copyright (c) 2012-2013 Franco Catena
+Copyright (c) 2013 Cirope S.A.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

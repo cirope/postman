@@ -1,4 +1,4 @@
-X0Y0::Application.configure do
+Postman::Application.configure do
   config.action_mailer.default_url_options = {
     host: APP_CONFIG['host'],
     protocol: (Rails.env.production? ? 'https' : 'http')
