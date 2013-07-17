@@ -1,0 +1,9 @@
+<h2><%= @tenant %></h2>
+
+<p>
+  <strong><%= Tenant.human_attribute_name 'subdomain' %></strong>:
+  <%= @tenant.subdomain %>
+</p>
+
+<%= link_to_edit edit_tenant_path(@tenant) %> |
+<%= link_to_index tenants_path %>

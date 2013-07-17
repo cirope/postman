@@ -1,0 +1,27 @@
+<% if @tenants.empty? %>
+  <%= render 'shared/empty_index', message: t('.empty_html') %>
+<% else %>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th><%= Tenant.human_attribute_name 'name' %></th>
+        <th><%= Tenant.human_attribute_name 'subdomain' %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @tenants.each do |tenant| %>
+        <tr>
+          <td><%= tenant.name %></td>
+          <td><%= tenant.subdomain %></td>
+          <td><%= link_to_show tenant %></td>
+          <td><%= link_to_edit edit_tenant_path(tenant) %></td>
+          <td><%= link_to_destroy tenant %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= link_to_new new_tenant_path, class: 'btn btn-primary' %>

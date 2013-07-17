@@ -1,5 +1,5 @@
 es:
-  app_name: 'X0Y0'
+  app_name: 'Soporte'
 
   messages:
     confirmation: '¿Está seguro?'
@@ -49,9 +49,30 @@ es:
     update:
       success: 'Tus datos se actualizaron correctamente'
 
+  tenants:
+    create:
+      success: 'Aplicación creada correctamente'
+    destroy:
+      success: 'Aplicación eliminada'
+    edit:
+      title: 'Editar aplicación'
+    index:
+      new: 'Nueva aplicación'
+      title: 'Listado de aplicaciones'
+      empty_html: 'No hay aplicaciones, puede crear una con el botón <span class="label label-info">Nueva aplicación</span>'
+    new:
+      title: 'Crear aplicación'
+    show:
+      title: 'Ver aplicación'
+    update:
+      success: 'Aplicación actualizada correctamente'
+      stale_object_error: 'No se pudo actualizar la aplicación, revise los datos e inténtelo nuevamente'
+
   tickets:
     create:
       success: 'Caso creado correctamente'
+    destroy:
+      success: 'Caso eliminado'
     edit:
       title: 'Editar caso'
     index:
@@ -69,6 +90,8 @@ es:
   users:
     create:
       success: 'Usuario creado correctamente'
+    destroy:
+      success: 'Usuario eliminado'
     edit:
       title: 'Editar usuario'
     index:

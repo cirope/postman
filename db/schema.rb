@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130716182814) do
+ActiveRecord::Schema.define(version: 20130717184525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tenants", force: true do |t|
+    t.string   "name",       null: false
+    t.string   "subdomain",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tenants", ["subdomain"], name: "index_tenants_on_subdomain", unique: true, using: :btree
 
   create_table "tickets", force: true do |t|
     t.string   "from",       null: false, array: true

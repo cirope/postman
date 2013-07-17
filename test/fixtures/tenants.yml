@@ -1,0 +1,7 @@
+postman:
+  name: Postman
+  subdomain: postman
+
+libreduca:
+  name: Libreduca
+  subdomain: libreduca

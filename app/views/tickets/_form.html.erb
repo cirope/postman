@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :from_addresses, required: true %>
+    <%= f.input :from_addresses, required: true, input_html: { autofocus: true } %>
     <%= f.input :subject %>
     <%= f.input :body, input_html: { rows: 8 } %>
   </div>

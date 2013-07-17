@@ -5,6 +5,9 @@ es:
 
   activerecord:
     models:
+      tenant:
+        one: 'Aplicación'
+        other: 'Aplicaciones'
       ticket:
         one: 'Caso'
         other: 'Casos'
@@ -13,6 +16,9 @@ es:
         other: 'Usuarios'
 
     attributes:
+      tenant:
+        name: 'Nombre'
+        subdomain: 'Subdominio'
       ticket:
         from_addresses: 'Destinatarios'
         subject: 'Asunto'

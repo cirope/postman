@@ -4,6 +4,8 @@ class TicketsControllerTest < ActionController::TestCase
 
   setup do
     @ticket = tickets(:enhancement)
+
+    login
   end
 
   test 'should get index' do
