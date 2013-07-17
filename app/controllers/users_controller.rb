@@ -3,14 +3,12 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
-  # GET /users.json
   def index
     @title = t('.title')
     @users = User.all
   end
 
   # GET /users/1
-  # GET /users/1.json
   def show
     @title = t('.title')
   end
@@ -27,7 +25,6 @@ class UsersController < ApplicationController
   end
 
   # POST /users
-  # POST /users.json
   def create
     @title = t('users.new.title')
     @user = User.new(user_params)
@@ -43,7 +40,6 @@ class UsersController < ApplicationController
   end
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     @title = t('users.edit.title')
 
@@ -60,7 +56,6 @@ class UsersController < ApplicationController
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
     respond_to do |format|
