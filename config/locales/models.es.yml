@@ -5,11 +5,18 @@ es:
 
   activerecord:
     models:
+      ticket:
+        one: 'Caso'
+        other: 'Casos'
       user:
         one: 'Usuario'
         other: 'Usuarios'
 
     attributes:
+      ticket:
+        from_addresses: 'Destinatarios'
+        subject: 'Asunto'
+        body: 'Detalles'
       user:
         name: 'Nombre'
         lastname: 'Apellido'

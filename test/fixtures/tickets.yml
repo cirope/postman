@@ -1,0 +1,5 @@
+enhancement:
+  from:
+    - external_user@postman.com
+  subject: Enhacement
+  body: This should be a great feature proposal =)

@@ -1,0 +1,17 @@
+<h2><%= @ticket %></h2>
+
+<p>
+  <strong><%= Ticket.human_attribute_name 'from_addresses' %></strong>:
+  <%= @ticket.from_addresses %>
+</p>
+<p>
+  <strong><%= Ticket.human_attribute_name 'subject' %></strong>:
+  <%= @ticket.subject %>
+</p>
+<p>
+  <strong><%= Ticket.human_attribute_name 'body' %></strong>:
+  <%= @ticket.body %>
+</p>
+
+<%= link_to_edit edit_ticket_path(@ticket) %> |
+<%= link_to_index tickets_path %>
