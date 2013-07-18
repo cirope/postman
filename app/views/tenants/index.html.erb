@@ -5,8 +5,9 @@
     <thead>
       <tr>
         <th><%= Tenant.human_attribute_name 'name' %></th>
+        <th><%= Tenant.human_attribute_name 'domain' %></th>
         <th><%= Tenant.human_attribute_name 'subdomain' %></th>
-        <th colspan="3"></th>
+        <th colspan="4"></th>
       </tr>
     </thead>
 
@@ -14,7 +15,9 @@
       <% @tenants.each do |tenant| %>
         <tr>
           <td><%= tenant.name %></td>
+          <td><%= tenant.domain %></td>
           <td><%= tenant.subdomain %></td>
+          <td><%= link_to_tickets tenant %></td>
           <td><%= link_to_show tenant %></td>
           <td><%= link_to_edit edit_tenant_path(tenant) %></td>
           <td><%= link_to_destroy tenant %></td>

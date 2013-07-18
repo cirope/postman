@@ -2,5 +2,5 @@
 
 <br />
 
-<%= link_to_show @ticket %> |
-<%= link_to_index tickets_path %>
+<%= link_to_show [@tenant, @ticket] %> |
+<%= link_to_index tenant_tickets_path(@tenant) %>

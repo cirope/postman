@@ -13,5 +13,5 @@
   <%= @ticket.body %>
 </p>
 
-<%= link_to_edit edit_ticket_path(@ticket) %> |
-<%= link_to_index tickets_path %>
+<%= link_to_edit edit_tenant_ticket_path(@tenant, @ticket) %> |
+<%= link_to_index tenant_tickets_path(@tenant) %>

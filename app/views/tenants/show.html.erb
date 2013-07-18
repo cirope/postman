@@ -1,5 +1,11 @@
 <h2><%= @tenant %></h2>
 
+<p><%= link_to t('tenants.show_tickets'), tenant_tickets_path(@tenant), title: t('tenants.show_tickets') %></p>
+
+<p>
+  <strong><%= Tenant.human_attribute_name 'domain' %></strong>:
+  <%= @tenant.domain %>
+</p>
 <p>
   <strong><%= Tenant.human_attribute_name 'subdomain' %></strong>:
   <%= @tenant.subdomain %>

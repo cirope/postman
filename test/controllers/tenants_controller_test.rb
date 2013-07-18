@@ -21,7 +21,7 @@ class TenantsControllerTest < ActionController::TestCase
   test 'should create tenant' do
     assert_difference('Tenant.count') do
       post :create, tenant: {
-        name: 'QA', subdomain: 'qa'
+        name: 'QA', domain: 'qa.com', subdomain: 'qa'
       }
     end
 

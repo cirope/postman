@@ -3,10 +3,10 @@ module Tickets::MessageProcess
 
   module ClassMethods
     def receive_mail message
-      ticket_id = message['X-Ticket-ID']
+      ticket_id = extract_ticket_id(message)
 
-      if ticket_id && exists?(ticket_id.decoded)
-        update ticket_id.decoded, body: message.body.decoded
+      if ticket_id && exists?(ticket_id)
+        update ticket_id, body: message.body.decoded
       else
         create_from_message message
       end
@@ -15,9 +15,25 @@ module Tickets::MessageProcess
     private
 
     def create_from_message message
-      create!(
-        from: message.from, subject: message.subject, body: message.body.decoded
-      )
+      tenants = extract_tenants message
+
+      raise 'Can not do it without a tenant' if tenants.empty?
+
+      tenants.each do |tenant|
+        tenant.tickets.create!(
+          from: message.from, subject: message.subject, body: message.body.decoded
+        )
+      end
+    end
+
+    def extract_tenants message
+      domains = message.to.map { |address| address.slice(/@(.+)\z/, 1) }
+
+      domains.map { |d| Tenant.find_by domain: d }.compact
+    end
+
+    def extract_ticket_id message
+      message['X-Ticket-ID'].decoded if message['X-Ticket-ID']
     end
   end
 end

@@ -1,11 +1,11 @@
 class TicketsController < ApplicationController
-  before_action :authorize
+  before_action :authorize, :set_tenant
   before_action :set_ticket, only:  [:show, :edit, :update, :destroy]
   
   # GET /tickets
   def index
-    @title = t('.title')
-    @tickets = Ticket.all
+    @title = t('.title', tenant: @tenant)
+    @tickets = @tenant.tickets
   end
 
   # GET /tickets/1
@@ -16,7 +16,7 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   def new
     @title = t('.title')
-    @ticket = Ticket.new
+    @ticket = @tenant.tickets.new
   end
 
   # GET /tickets/1/edit
@@ -27,12 +27,12 @@ class TicketsController < ApplicationController
   # POST /tickets
   def create
     @title = t('tickets.new.title')
-    @ticket = Ticket.new(ticket_params)
+    @ticket = @tenant.tickets.new(ticket_params)
 
     respond_to do |format|
       if @ticket.save
-        format.html { redirect_to @ticket, notice: t('.success') }
-        format.json { render action: 'show', status: :created, location: @ticket }
+        format.html { redirect_to [@tenant, @ticket], notice: t('.success') }
+        format.json { render action: 'show', status: :created, location: [@tenant, @ticket] }
       else
         respond_with_error format, 'new'
       end
@@ -45,21 +45,21 @@ class TicketsController < ApplicationController
 
     respond_to do |format|
       if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: t('.success') }
+        format.html { redirect_to [@tenant, @ticket], notice: t('.success') }
         format.json { head :no_content }
       else
         respond_with_error format, 'edit'
       end
     end
   rescue ActiveRecord::StaleObjectError
-    redirect_to edit_ticket_url(@ticket), alert: t('.stale_object_error')
+    redirect_to edit_tenant_ticket_url(@tenant, @ticket), alert: t('.stale_object_error')
   end
 
   # DELETE /tickets/1
   def destroy
     @ticket.destroy
     respond_to do |format|
-      format.html { redirect_to tickets_url, notice: t('.success') }
+      format.html { redirect_to tenant_tickets_url(@tenant), notice: t('.success') }
       format.json { head :no_content }
     end
   end
@@ -72,7 +72,11 @@ class TicketsController < ApplicationController
   end
 
   def set_ticket
-    @ticket = Ticket.find(params[:id])
+    @ticket = @tenant.tickets.find params[:id]
+  end
+
+  def set_tenant
+    @tenant = Tenant.find params[:tenant_id]
   end
 
   def ticket_params

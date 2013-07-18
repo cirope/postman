@@ -2,9 +2,9 @@
   <%= render 'shared/empty_index', message: t('.empty_html') %>
 <% else %>
   <table class="table table-striped table-hover">
+    <caption><%= t('.title_html', tenant: link_to(@tenant, @tenant, title: @tenant)) %></caption>
     <thead>
       <tr>
-        <th><%= Ticket.human_attribute_name 'from_addresses' %></th>
         <th><%= Ticket.human_attribute_name 'subject' %></th>
         <th colspan="3"></th>
       </tr>
@@ -13,15 +13,14 @@
     <tbody>
       <% @tickets.each do |ticket| %>
         <tr>
-          <td><%= ticket.from_addresses %></td>
           <td><%= ticket.subject %></td>
-          <td><%= link_to_show ticket %></td>
-          <td><%= link_to_edit edit_ticket_path(ticket) %></td>
-          <td><%= link_to_destroy ticket %></td>
+          <td><%= link_to_show [@tenant, ticket] %></td>
+          <td><%= link_to_edit edit_tenant_ticket_path(@tenant, ticket) %></td>
+          <td><%= link_to_destroy [@tenant, ticket] %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% end %>
 
-<%= link_to_new new_ticket_path, class: 'btn btn-primary' %>
+<%= link_to_new new_tenant_ticket_path(@tenant), class: 'btn btn-primary' %>

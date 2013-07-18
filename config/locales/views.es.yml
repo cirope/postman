@@ -50,6 +50,7 @@ es:
       success: 'Tus datos se actualizaron correctamente'
 
   tenants:
+    show_tickets: 'Ver casos'
     create:
       success: 'Aplicación creada correctamente'
     destroy:
@@ -77,7 +78,8 @@ es:
       title: 'Editar caso'
     index:
       new: 'Nuevo caso'
-      title: 'Listado de casos'
+      title: 'Casos de %{tenant}'
+      title_html: 'Casos de %{tenant}'
       empty_html: 'No hay casos, puede crear uno con el botón <span class="label label-info">Nuevo caso</span>'
     new:
       title: 'Crear caso'

@@ -1,7 +1,9 @@
 postman:
   name: Postman
+  domain: postman.com
   subdomain: postman
 
 libreduca:
   name: Libreduca
+  domain: libreduca.com
   subdomain: libreduca

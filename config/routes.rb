@@ -11,8 +11,9 @@ Postman::Application.routes.draw do
   # Resources
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :users
-  resources :tenants
-  resources :tickets
+  resources :tenants do
+    resources :tickets
+  end
 
   root 'sessions#new'
 end

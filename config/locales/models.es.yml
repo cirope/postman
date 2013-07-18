@@ -18,6 +18,7 @@ es:
     attributes:
       tenant:
         name: 'Nombre'
+        domain: 'Dominio'
         subdomain: 'Subdominio'
       ticket:
         from_addresses: 'Destinatarios'
