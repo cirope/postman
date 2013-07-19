@@ -20,9 +20,7 @@ module Tickets::MessageProcess
       raise 'Can not do it without a tenant' if tenants.empty?
 
       tenants.each do |tenant|
-        tenant.tickets.create!(
-          from: message.from, subject: message.subject, body: message.body.decoded
-        )
+        tenant.tickets.create! extract_ticket_attributes(message)
       end
     end
 
@@ -34,6 +32,14 @@ module Tickets::MessageProcess
 
     def extract_ticket_id message
       message['X-Ticket-ID'].decoded if message['X-Ticket-ID']
+    end
+
+    def extract_ticket_attributes message
+      {
+        from: message.from,
+        subject: message.subject,
+        body: (message.text_part || message.html_part || message).body.decoded
+      }
     end
   end
 end

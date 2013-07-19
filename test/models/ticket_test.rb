@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'mail' unless Object.const_defined? :Mail
 
 class TicketTest < ActiveSupport::TestCase
   def setup
@@ -34,6 +35,12 @@ class TicketTest < ActiveSupport::TestCase
     end
   end
 
+  test 'receive new multipart message' do
+    assert_difference 'Ticket.count' do
+      Ticket.receive_mail multipart_mail
+    end
+  end
+
   test 'receive message update' do
     mail = mail(with_id: true)
 
@@ -47,8 +54,28 @@ class TicketTest < ActiveSupport::TestCase
   private
 
   def mail with_id: false
-    require 'mail' unless Object.const_defined? :Mail
+    mail = create_mail with_id: with_id
+    mail.body = "Some\nbody =)"
 
+    mail
+  end
+
+  def multipart_mail with_id: false
+    mail = create_mail with_id: with_id
+
+    mail.text_part = Mail::Part.new do
+      body 'Text body'
+    end
+
+    mail.html_part = Mail::Part.new do
+      content_type 'text/html; charset=UTF-8'
+      body '<h1>HTML body</h1>'
+    end
+
+    mail
+  end
+
+  def create_mail with_id: false
     _headers = { 'X-Ticket-ID' => @ticket.id.to_s }
 
     Mail.new do
@@ -56,7 +83,6 @@ class TicketTest < ActiveSupport::TestCase
       from    'nobody@test.net'
       to      'support@postman.com'
       subject 'Test email'
-      body    "Some\nbody =)"
     end
   end
 end
