@@ -3,7 +3,8 @@ class ResponseMailer < ActionMailer::Base
 
   def reply ticket, body
     @body = body
+    tenant = ticket.tenant
 
-    mail subject: ticket.subject_with_id, to: ticket.from
+    mail subject: ticket.subject_with_id, from: tenant.email, to: ticket.from
   end
 end
