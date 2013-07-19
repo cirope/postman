@@ -5,6 +5,9 @@ es:
 
   activerecord:
     models:
+      reply:
+        one: 'Respuesta'
+        other: 'Respuestas'
       tenant:
         one: 'Aplicación'
         other: 'Aplicaciones'
@@ -16,6 +19,8 @@ es:
         other: 'Usuarios'
 
     attributes:
+      reply:
+        body: 'Respuesta'
       tenant:
         name: 'Nombre'
         domain: 'Dominio'

@@ -14,6 +14,9 @@ Postman::Application.routes.draw do
   resources :tenants do
     resources :tickets
   end
+  resources :tickets, only: [] do
+    resources :replies
+  end
 
   root 'sessions#new'
 end

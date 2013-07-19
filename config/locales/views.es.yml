@@ -49,6 +49,26 @@ es:
     update:
       success: 'Tus datos se actualizaron correctamente'
 
+  replies:
+    create:
+      success: 'Respuesta creada correctamente'
+    destroy:
+      success: 'Respuesta eliminada'
+    edit:
+      title: 'Editar respuesta'
+    index:
+      new: 'Nueva respuesta'
+      title: 'Respuestas de %{ticket}'
+      title_html: 'Respuestas de %{ticket}'
+      empty_html: 'No hay respuestas, puede crear una con el botón <span class="label label-info">Nueva respuesta</span>'
+    new:
+      title: 'Crear respuesta'
+    show:
+      title: 'Ver respuesta'
+    update:
+      success: 'Respuesta actualizada correctamente'
+      stale_object_error: 'No se pudo actualizar la respuesta, revise los datos e inténtelo nuevamente'
+
   tenants:
     show_tickets: 'Ver casos'
     create:
