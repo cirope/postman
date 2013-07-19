@@ -25,9 +25,7 @@ module Tickets::MessageProcess
     end
 
     def extract_tenants message
-      domains = message.to.map { |address| address.slice /@(.+)\z/, 1 }
-
-      domains.map { |d| Tenant.find_by domain: d }.compact
+      message.to.map { |e| Tenant.find_by email: e }.compact
     end
 
     def extract_ticket_id message

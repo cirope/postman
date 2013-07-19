@@ -21,7 +21,7 @@ class TenantsControllerTest < ActionController::TestCase
   test 'should create tenant' do
     assert_difference('Tenant.count') do
       post :create, tenant: {
-        name: 'QA', domain: 'qa.com', subdomain: 'qa'
+        name: 'QA', email: 'support@qa.com', subdomain: 'qa'
       }
     end
 
@@ -44,7 +44,7 @@ class TenantsControllerTest < ActionController::TestCase
   end
 
   test 'should destroy tenant' do
-    assert_difference('Tenant.count', -1) do
+    assert_difference 'Tenant.count', -1 do
       delete :destroy, id: @tenant
     end
 

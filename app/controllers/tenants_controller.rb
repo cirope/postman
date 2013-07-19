@@ -76,6 +76,6 @@ class TenantsController < ApplicationController
   end
 
   def tenant_params
-    params.require(:tenant).permit(:name, :domain, :subdomain)
+    params.require(:tenant).permit(:name, :email, :subdomain)
   end
 end

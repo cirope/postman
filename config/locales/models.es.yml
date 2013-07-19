@@ -23,7 +23,7 @@ es:
         body: 'Respuesta'
       tenant:
         name: 'Nombre'
-        domain: 'Dominio'
+        email: 'Correo de soporte'
         subdomain: 'Subdominio'
       ticket:
         from_addresses: 'Destinatarios'

@@ -1,9 +1,9 @@
 postman:
   name: Postman
-  domain: postman.com
+  email: support@postman.com
   subdomain: postman
 
 libreduca:
   name: Libreduca
-  domain: libreduca.com
+  email: support@libreduca.com
   subdomain: libreduca
