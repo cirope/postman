@@ -1,12 +1,13 @@
 module Tickets::MessageProcess
   extend ActiveSupport::Concern
 
+
   module ClassMethods
     def receive_mail message
       ticket_id = extract_ticket_id(message)
 
       if ticket_id && exists?(ticket_id)
-        update ticket_id, body: message.body.decoded
+        find(ticket_id).create_reply message
       else
         create_from_message message
       end

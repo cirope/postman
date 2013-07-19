@@ -45,10 +45,10 @@ class TicketTest < ActiveSupport::TestCase
     mail = mail(with_id: true)
 
     assert_no_difference 'Ticket.count' do
-      Ticket.receive_mail mail
+      assert_difference '@ticket.replies.count' do
+        Ticket.receive_mail mail
+      end
     end
-
-    assert_equal mail.body.decoded, @ticket.reload.body
   end
 
   private
