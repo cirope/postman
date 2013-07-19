@@ -32,7 +32,7 @@ class RepliesController < ApplicationController
 
     respond_to do |format|
       if @reply.save
-        format.html { redirect_to [@ticket, @reply], notice: t('.success') }
+        format.html { redirect_to ticket, notice: t('.success') }
         format.json { render action: 'show', status: :created, location: [@ticket, @reply] }
       else
         respond_with_error format, 'new'
@@ -46,7 +46,7 @@ class RepliesController < ApplicationController
 
     respond_to do |format|
       if @reply.update(reply_params)
-        format.html { redirect_to [@ticket, @reply], notice: t('.success') }
+        format.html { redirect_to ticket, notice: t('.success') }
         format.json { head :no_content }
       else
         respond_with_error format, 'edit'
@@ -60,7 +60,7 @@ class RepliesController < ApplicationController
   def destroy
     @reply.destroy
     respond_to do |format|
-      format.html { redirect_to ticket_replies_url(@ticket), notice: t('.success') }
+      format.html { redirect_to ticket, notice: t('.success') }
       format.json { head :no_content }
     end
   end
@@ -82,5 +82,9 @@ class RepliesController < ApplicationController
 
   def reply_params
     params.require(:reply).permit(:body)
+  end
+
+  def ticket
+    [@ticket.tenant, @ticket]
   end
 end

@@ -24,7 +24,7 @@ class RepliesControllerTest < ActionController::TestCase
       post :create, ticket_id: @ticket, reply: { body: 'Test' }
     end
 
-    assert_redirected_to ticket_reply_url(@ticket, assigns(:reply))
+    assert_redirected_to ticket
   end
 
   test 'should show reply' do
@@ -39,7 +39,7 @@ class RepliesControllerTest < ActionController::TestCase
 
   test 'should update reply' do
     patch :update, ticket_id: @ticket, id: @reply, reply: { body: 'Updated' }
-    assert_redirected_to ticket_reply_url(@ticket, assigns(:reply))
+    assert_redirected_to ticket
   end
 
   test 'should destroy reply' do
@@ -47,6 +47,12 @@ class RepliesControllerTest < ActionController::TestCase
       delete :destroy, ticket_id: @ticket, id: @reply
     end
 
-    assert_redirected_to ticket_replies_path(@ticket)
+    assert_redirected_to ticket
+  end
+
+  private
+
+  def ticket
+    [@ticket.tenant, @ticket]
   end
 end

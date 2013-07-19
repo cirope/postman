@@ -4,14 +4,14 @@
   <strong><%= Ticket.human_attribute_name 'from_addresses' %></strong>:
   <%= @ticket.from_addresses %>
 </p>
-<p>
-  <strong><%= Ticket.human_attribute_name 'subject' %></strong>:
-  <%= @ticket.subject %>
-</p>
-<p>
-  <strong><%= Ticket.human_attribute_name 'body' %></strong>:
-  <%= @ticket.body %>
-</p>
+
+<%= simple_format @ticket.body %>
+
+<%= render @ticket.replies.reject(&:new_record?) %>
+
+<%= render 'replies/form' %>
+
+<hr />
 
 <%= link_to_edit edit_tenant_ticket_path(@tenant, @ticket) %> |
 <%= link_to_index tenant_tickets_path(@tenant) %>

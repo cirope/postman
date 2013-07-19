@@ -11,6 +11,7 @@ class TicketsController < ApplicationController
   # GET /tickets/1
   def show
     @title = t('.title')
+    @reply = @ticket.replies.new
   end
 
   # GET /tickets/new
