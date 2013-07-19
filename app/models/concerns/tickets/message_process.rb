@@ -1,10 +1,9 @@
 module Tickets::MessageProcess
   extend ActiveSupport::Concern
 
-
   module ClassMethods
     def receive_mail message
-      ticket_id = extract_ticket_id(message)
+      ticket_id = extract_ticket_id message
 
       if ticket_id && exists?(ticket_id)
         find(ticket_id).create_reply message
@@ -26,13 +25,13 @@ module Tickets::MessageProcess
     end
 
     def extract_tenants message
-      domains = message.to.map { |address| address.slice(/@(.+)\z/, 1) }
+      domains = message.to.map { |address| address.slice /@(.+)\z/, 1 }
 
       domains.map { |d| Tenant.find_by domain: d }.compact
     end
 
     def extract_ticket_id message
-      message['X-Ticket-ID'].decoded if message['X-Ticket-ID']
+      message.subject.slice /#(\d+)/, 1
     end
 
     def extract_ticket_attributes message

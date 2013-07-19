@@ -32,6 +32,8 @@ class RepliesController < ApplicationController
 
     respond_to do |format|
       if @reply.save
+        ResponseMailer.reply(@ticket, @reply.body).deliver
+
         format.html { redirect_to ticket, notice: t('.success') }
         format.json { render action: 'show', status: :created, location: [@ticket, @reply] }
       else

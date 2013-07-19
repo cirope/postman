@@ -29,6 +29,15 @@ class TicketTest < ActiveSupport::TestCase
     assert_equal 'one@one.net, two@two.net, three@three.net', @ticket.from_addresses
   end
 
+  test 'subject with id' do
+    assert_no_match /\d+/, @ticket.subject
+    assert_match /#\d+/, @ticket.subject_with_id
+
+    @ticket.subject = @ticket.subject_with_id
+
+    assert_equal 1, @ticket.subject_with_id.count('#')
+  end
+
   test 'receive new message' do
     assert_difference 'Ticket.count' do
       Ticket.receive_mail mail
@@ -76,13 +85,13 @@ class TicketTest < ActiveSupport::TestCase
   end
 
   def create_mail with_id: false
-    _headers = { 'X-Ticket-ID' => @ticket.id.to_s }
+    _subject =  "Test email"
+    _subject << " [##{@ticket.id}]" if with_id
 
     Mail.new do
-      headers _headers if with_id
       from    'nobody@test.net'
       to      'support@postman.com'
-      subject 'Test email'
+      subject _subject
     end
   end
 end

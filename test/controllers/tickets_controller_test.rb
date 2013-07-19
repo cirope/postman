@@ -21,7 +21,7 @@ class TicketsControllerTest < ActionController::TestCase
   end
 
   test 'should create ticket' do
-    assert_difference('Ticket.count') do
+    assert_difference ['ActionMailer::Base.deliveries.size', 'Ticket.count'] do
       post :create, tenant_id: @tenant, ticket: {
         from_addresses: @ticket.from_addresses,
         subject: @ticket.subject,
