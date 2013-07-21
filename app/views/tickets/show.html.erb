@@ -5,7 +5,10 @@
   <%= @ticket.from_addresses %>
 </p>
 
-<%= simple_format @ticket.body %>
+<blockquote>
+  <%= simple_format @ticket.body %>
+  <small><%= l @ticket.created_at %></small>
+</blockquote>
 
 <%= render @ticket.replies.reject(&:new_record?) %>
 

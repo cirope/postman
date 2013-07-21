@@ -6,7 +6,7 @@ module Tickets::MessageProcess
       ticket_id = extract_ticket_id message
 
       if ticket_id && exists?(ticket_id)
-        find(ticket_id).create_reply message
+        find(ticket_id).create_reply extract_body(message)
       else
         create_from_message message
       end
@@ -32,12 +32,18 @@ module Tickets::MessageProcess
       message.subject.slice /#(\d+)/, 1
     end
 
+    def extract_body message
+      reply_delimiter = I18n.t('response_mailer.reply.reply_delimiter')
+
+      extract_part(message).split(reply_delimiter).first
+    end
+
+    def extract_part message
+      (message.text_part || message.html_part || message).body.decoded
+    end
+
     def extract_ticket_attributes message
-      {
-        from: message.from,
-        subject: message.subject,
-        body: (message.text_part || message.html_part || message).body.decoded
-      }
+      { from: message.from, subject: message.subject, body: extract_body(message) }
     end
   end
 end

@@ -2,3 +2,6 @@ es:
   user_mailer:
     password_reset:
       subject: 'Restablecer contraseña'
+  response_mailer:
+    reply:
+      reply_delimiter: '-- RESPONDER ARRIBA DE ESTA LINEA --'

@@ -2,10 +2,10 @@ module Tickets::Replies
   extend ActiveSupport::Concern
 
   included do
-    has_many :replies, dependent: :destroy
+    has_many :replies, -> { order 'created_at ASC' }, dependent: :destroy
   end
 
-  def create_reply message
-    replies.create! body: message.body.decoded
+  def create_reply body
+    replies.create! body: body
   end
 end
