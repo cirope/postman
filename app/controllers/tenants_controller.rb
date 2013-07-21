@@ -1,27 +1,26 @@
 class TenantsController < ApplicationController
+  include Responder
+
   before_action :authorize
   before_action :set_tenant, only:  [:show, :edit, :update, :destroy]
+  before_action :set_title, only: [:index, :show, :new, :edit]
   
   # GET /tenants
   def index
-    @title = t('.title')
     @tenants = Tenant.all
   end
 
   # GET /tenants/1
   def show
-    @title = t('.title')
   end
 
   # GET /tenants/new
   def new
-    @title = t('.title')
     @tenant = Tenant.new
   end
 
   # GET /tenants/1/edit
   def edit
-    @title = t('.title')
   end
 
   # POST /tenants
@@ -29,46 +28,27 @@ class TenantsController < ApplicationController
     @title = t('tenants.new.title')
     @tenant = Tenant.new(tenant_params)
 
-    respond_to do |format|
-      if @tenant.save
-        format.html { redirect_to @tenant, notice: t('.success') }
-        format.json { render action: 'show', status: :created, location: @tenant }
-      else
-        respond_with_error format, 'new'
-      end
-    end
+    creation_response
   end
 
   # PATCH /tenants/1
   def update
     @title = t('tenants.edit.title')
 
-    respond_to do |format|
-      if @tenant.update(tenant_params)
-        format.html { redirect_to @tenant, notice: t('.success') }
-        format.json { head :no_content }
-      else
-        respond_with_error format, 'edit'
-      end
-    end
+    update_response
   rescue ActiveRecord::StaleObjectError
     redirect_to edit_tenant_url(@tenant), alert: t('.stale_object_error')
   end
 
   # DELETE /tenants/1
   def destroy
-    @tenant.destroy
-    respond_to do |format|
-      format.html { redirect_to tenants_url, notice: t('.success') }
-      format.json { head :no_content }
-    end
+    destroy_response
   end
 
   private
 
-  def respond_with_error format, action
-    format.html { render action: action }
-    format.json { render json: @tenant.errors, status: :unprocessable_entity }
+  def set_title
+    @title = t('.title')
   end
 
   def set_tenant
@@ -77,5 +57,14 @@ class TenantsController < ApplicationController
 
   def tenant_params
     params.require(:tenant).permit(:name, :email, :subdomain)
+  end
+  alias_method :resource_params, :tenant_params
+
+  def resource
+    @tenant
+  end
+
+  def resources_url
+    tenants_url
   end
 end

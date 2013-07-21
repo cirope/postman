@@ -1,7 +1,10 @@
 class RepliesController < ApplicationController
+  include Responder
+
   before_action :authorize
   before_action :set_ticket
   before_action :set_reply, only:  [:show, :edit, :update, :destroy]
+  before_action :set_title, only: [:show, :new, :edit]
   
   # GET /replies
   def index
@@ -11,18 +14,15 @@ class RepliesController < ApplicationController
 
   # GET /replies/1
   def show
-    @title = t('.title')
   end
 
   # GET /replies/new
   def new
-    @title = t('.title')
     @reply = @ticket.replies.new
   end
 
   # GET /replies/1/edit
   def edit
-    @title = t('.title')
   end
 
   # POST /replies
@@ -69,17 +69,16 @@ class RepliesController < ApplicationController
 
   private
 
-  def respond_with_error format, action
-    format.html { render action: action }
-    format.json { render json: @reply.errors, status: :unprocessable_entity }
-  end
-
   def set_reply
     @reply = @ticket.replies.find params[:id]
   end
 
   def set_ticket
     @ticket = Ticket.find params[:ticket_id]
+  end
+
+  def set_title
+    @title = t '.title'
   end
 
   def reply_params
