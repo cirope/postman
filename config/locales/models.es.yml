@@ -5,6 +5,9 @@ es:
 
   activerecord:
     models:
+      category:
+        one: 'Categoría'
+        other: 'Categorías'
       reply:
         one: 'Respuesta'
         other: 'Respuestas'
@@ -19,6 +22,8 @@ es:
         other: 'Usuarios'
 
     attributes:
+      category:
+        name: 'Nombre'
       reply:
         body: 'Respuesta'
       tenant:
@@ -29,6 +34,7 @@ es:
         from_addresses: 'Destinatarios'
         subject: 'Asunto'
         body: 'Detalles'
+        category_id: 'Categoría'
       user:
         name: 'Nombre'
         lastname: 'Apellido'

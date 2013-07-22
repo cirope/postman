@@ -4,3 +4,4 @@ enhancement:
   subject: Enhacement
   body: This should be a great feature proposal =)
   tenant: postman
+  category: feature

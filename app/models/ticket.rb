@@ -7,4 +7,5 @@ class Ticket < ActiveRecord::Base
   include Tickets::Validation
 
   belongs_to :tenant
+  belongs_to :category
 end

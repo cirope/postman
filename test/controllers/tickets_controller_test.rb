@@ -25,6 +25,7 @@ class TicketsControllerTest < ActionController::TestCase
       post :create, tenant_id: @tenant, ticket: {
         from_addresses: @ticket.from_addresses,
         subject: @ticket.subject,
+        category_id: @ticket.category_id,
         body: @ticket.body
       }
     end

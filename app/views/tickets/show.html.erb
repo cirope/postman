@@ -1,5 +1,11 @@
 <h2><%= @ticket %></h2>
 
+<% if @ticket.category %>
+  <p>
+    <span class="label"><%= @ticket.category %></span>
+  </p>
+<% end %>
+
 <p>
   <strong><%= Ticket.human_attribute_name 'from_addresses' %></strong>:
   <%= @ticket.from_addresses %>

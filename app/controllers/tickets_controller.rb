@@ -8,7 +8,7 @@ class TicketsController < ApplicationController
   # GET /tickets
   def index
     @title = t '.title', tenant: @tenant
-    @tickets = @tenant.tickets
+    @tickets = @tenant.tickets.includes :category
   end
 
   # GET /tickets/1
@@ -60,7 +60,7 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:from_addresses, :subject, :body)
+    params.require(:ticket).permit(:from_addresses, :subject, :category_id, :body)
   end
   alias_method :resource_params, :ticket_params
 
