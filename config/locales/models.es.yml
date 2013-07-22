@@ -8,6 +8,9 @@ es:
       category:
         one: 'Categoría'
         other: 'Categorías'
+      feedback:
+        one: 'Calificación'
+        other: 'Calificaciones'
       reply:
         one: 'Respuesta'
         other: 'Respuestas'
@@ -24,6 +27,10 @@ es:
     attributes:
       category:
         name: 'Nombre'
+      feedback:
+        from: 'De'
+        score: 'Calificación'
+        notes: 'Comentarios'
       reply:
         body: 'Respuesta'
       tenant:

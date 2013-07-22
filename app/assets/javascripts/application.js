@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require feedbacks
 //= require password_resets
 //= require profiles
 //= require replies

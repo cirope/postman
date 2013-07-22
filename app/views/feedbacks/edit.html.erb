@@ -1,0 +1,22 @@
+<h2><%= render "score_greeting_for_#{@feedback.score}" %></h2>
+
+<% if @feedback.notes.blank? %>
+  <div class="row">
+    <div class="col col-lg-6 col-offset-3">
+      <%= simple_form_for [@ticket, @feedback] do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :notes, label: false, input_html: { rows: 6, autofocus: true } %>
+          <%= f.input :from, as: :hidden %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, t('.submit'), class: 'btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <%= render 'thank_you' %>
+<% end %>

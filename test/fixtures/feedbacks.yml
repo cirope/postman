@@ -1,0 +1,5 @@
+positive:
+  from: external_user@postman.com
+  score: great
+  notes: Some great feedback
+  ticket: enhancement

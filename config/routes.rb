@@ -15,6 +15,7 @@ Postman::Application.routes.draw do
     resources :tickets
   end
   resources :tickets, only: [] do
+    resources :feedbacks, constraints: { id: /.*/ }, except: [:destroy]
     resources :replies
   end
 

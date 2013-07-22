@@ -9,4 +9,5 @@ class Ticket < ActiveRecord::Base
 
   belongs_to :tenant
   belongs_to :category
+  has_many :feedbacks, dependent: :destroy
 end

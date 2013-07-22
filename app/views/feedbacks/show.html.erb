@@ -1,0 +1,19 @@
+<h2><%= feedback_score @feedback.score %></h2>
+
+<p>
+  <strong><%= Feedback.human_attribute_name 'from' %></strong>:
+  <%= @feedback.from %>
+</p>
+<% if @feedback.notes %>
+  <p>
+    <strong><%= Feedback.human_attribute_name 'notes' %></strong>:
+    <%= simple_format @feedback.notes %>
+  </p>
+<% end %>
+<p>
+  <strong><%= Feedback.human_attribute_name 'ticket' %></strong>:
+  <%= @feedback.ticket %>
+</p>
+
+<%= link_to_edit edit_ticket_feedback_path(@ticket, @feedback) %> |
+<%= link_to_index ticket_feedbacks_path(@ticket) %>

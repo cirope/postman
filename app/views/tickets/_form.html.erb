@@ -6,10 +6,10 @@
     <%= f.input :subject %>
     <%= f.input :body, input_html: { rows: 8 } %>
     <div class="row">
-      <div class="col col-6">
+      <div class="col col-lg-6">
         <%= f.input :status, collection: status, prompt: false %>
       </div>
-      <div class="col col-6">
+      <div class="col col-lg-6">
         <%= f.input :category_id, collection: categories %>
       </div>
     </div>

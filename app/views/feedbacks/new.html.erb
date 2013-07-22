@@ -1,0 +1,13 @@
+<div class="page-header">
+  <h1 class="text-center"><%= t('.question') %></h1>
+</div>
+
+<div class="row">
+  <div class="col col-lg-6 col-offset-3">
+    <% feedback_scores.each do |score| %>
+      <%= link_to create_feedback_path(score), method: :post do %>
+        <%= render "score_description_for_#{score}" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

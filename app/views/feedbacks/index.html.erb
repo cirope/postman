@@ -1,0 +1,28 @@
+<% if @feedbacks.empty? %>
+  <%= render 'shared/empty_index', message: t('.empty_html') %>
+<% else %>
+  <table class="table table-striped table-hover">
+    <caption><%= t '.title_html', ticket: link_to(@ticket, [@ticket.tenant, @ticket]) %></caption>
+    <thead>
+      <tr>
+        <th><%= Feedback.human_attribute_name 'from' %></th>
+        <th><%= Feedback.human_attribute_name 'score' %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @feedbacks.each do |feedback| %>
+        <tr>
+          <td><%= feedback.from %></td>
+          <td><%= feedback_score feedback.score %></td>
+          <td><%= link_to_show [@ticket, feedback] %></td>
+          <td><%= link_to_edit edit_ticket_feedback_path(@ticket, feedback) %></td>
+          <td><%= link_to_destroy [@ticket, feedback] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= link_to_new new_ticket_feedback_path(@ticket), class: 'btn btn-primary' %>

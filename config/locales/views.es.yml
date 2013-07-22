@@ -12,6 +12,29 @@ es:
     logout: 'Salir'
     show: 'Ver'
 
+  feedbacks:
+    create:
+      success: ''
+    edit:
+      title: 'Editar calificación'
+      submit: 'Enviar comentarios'
+    index:
+      title: 'Calificaciones de %{ticket}'
+      title_html: 'Calificaciones de %{ticket}'
+      empty_html: 'No hay calificaciones'
+    new:
+      title: 'Crear calificación'
+      question: '¿Cómo calificarías la atención que recibiste?'
+    show:
+      title: 'Ver calificación'
+    update:
+      success: ''
+      stale_object_error: 'No se pudo actualizar la calificación, revise los datos e inténtelo nuevamente'
+    scores:
+      great: 'Excelente'
+      good: 'Bueno'
+      poor: 'Triste'
+
   sessions:
     new:
       title: 'Ingreso'

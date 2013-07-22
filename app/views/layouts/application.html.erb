@@ -11,7 +11,7 @@
 <body>
   <div class="container">
     <%= render 'shared/menu' %>
-    <%= render 'shared/flash' if flash_message %>
+    <%= render 'shared/flash' if flash_message.present? %>
     <%= yield %>
   </div>
 </body>
