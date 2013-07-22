@@ -8,7 +8,7 @@ class RepliesController < ApplicationController
   
   # GET /replies
   def index
-    @title = t('.title', ticket: @ticket)
+    @title = t '.title', ticket: @ticket
     @replies = @ticket.replies
   end
 
@@ -27,44 +27,22 @@ class RepliesController < ApplicationController
 
   # POST /replies
   def create
-    @title = t('replies.new.title')
-    @reply = @ticket.replies.new(reply_params)
+    @title = t 'replies.new.title'
+    @reply = @ticket.replies.new reply_params
 
-    respond_to do |format|
-      if @reply.save
-        ResponseMailer.reply(@ticket, @reply.body).deliver
-
-        format.html { redirect_to ticket, notice: t('.success') }
-        format.json { render action: 'show', status: :created, location: [@ticket, @reply] }
-      else
-        respond_with_error format, 'new'
-      end
-    end
+    create_and_respond { ResponseMailer.reply(@ticket, @reply.body).deliver }
   end
 
   # PUT/PATCH /replies/1
   def update
-    @title = t('replies.edit.title')
+    @title = t 'replies.edit.title'
 
-    respond_to do |format|
-      if @reply.update(reply_params)
-        format.html { redirect_to ticket, notice: t('.success') }
-        format.json { head :no_content }
-      else
-        respond_with_error format, 'edit'
-      end
-    end
-  rescue ActiveRecord::StaleObjectError
-    redirect_to edit_ticket_reply_url(@ticket, @reply), alert: t('.stale_object_error')
+    update_and_respond
   end
 
   # DELETE /replies/1
   def destroy
-    @reply.destroy
-    respond_to do |format|
-      format.html { redirect_to ticket, notice: t('.success') }
-      format.json { head :no_content }
-    end
+    destroy_and_respond
   end
 
   private
@@ -84,8 +62,19 @@ class RepliesController < ApplicationController
   def reply_params
     params.require(:reply).permit(:body)
   end
+  alias_method :resource_params, :reply_params
 
-  def ticket
+  def resource
+    @reply
+  end
+
+  def edit_resource_url
+    edit_ticket_reply_url @ticket, @reply
+  end
+
+  def after_create_url
     [@ticket.tenant, @ticket]
   end
+  alias_method :after_update_url, :after_create_url
+  alias_method :after_destroy_url, :after_create_url
 end

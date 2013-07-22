@@ -25,34 +25,32 @@ class TenantsController < ApplicationController
 
   # POST /tenants
   def create
-    @title = t('tenants.new.title')
-    @tenant = Tenant.new(tenant_params)
+    @title = t 'tenants.new.title'
+    @tenant = Tenant.new tenant_params
 
-    creation_response
+    create_and_respond
   end
 
   # PATCH /tenants/1
   def update
-    @title = t('tenants.edit.title')
+    @title = t 'tenants.edit.title'
 
-    update_response
-  rescue ActiveRecord::StaleObjectError
-    redirect_to edit_tenant_url(@tenant), alert: t('.stale_object_error')
+    update_and_respond
   end
 
   # DELETE /tenants/1
   def destroy
-    destroy_response
+    destroy_and_respond
   end
 
   private
 
   def set_title
-    @title = t('.title')
+    @title = t '.title'
   end
 
   def set_tenant
-    @tenant = Tenant.find(params[:id])
+    @tenant = Tenant.find params[:id]
   end
 
   def tenant_params
@@ -63,8 +61,12 @@ class TenantsController < ApplicationController
   def resource
     @tenant
   end
+  alias_method :after_create_url, :resource
+  alias_method :after_update_url, :resource
 
-  def resources_url
-    tenants_url
+  def edit_resource_url
+    edit_tenant_url @tenant
   end
+
+  alias_method :after_destroy_url, :tenants_url
 end
