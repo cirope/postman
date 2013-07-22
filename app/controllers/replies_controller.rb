@@ -30,7 +30,7 @@ class RepliesController < ApplicationController
     @title = t 'replies.new.title'
     @reply = @ticket.replies.new reply_params
 
-    create_and_respond { ResponseMailer.reply(@ticket, @reply.body).deliver }
+    create_and_respond { ResponseMailer.delay.reply @ticket, @reply.body }
   end
 
   # PUT/PATCH /replies/1

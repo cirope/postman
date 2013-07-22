@@ -9,7 +9,7 @@ class PasswordResetsController < ApplicationController
 
     if user
       user.prepare_password_reset
-      UserMailer.password_reset(user).deliver
+      UserMailer.delay.password_reset user
 
       redirect_to root_url, notice: t('.success')
     else

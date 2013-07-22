@@ -13,6 +13,7 @@ gem 'unicorn'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'simple_form', '3.0.0.rc'
 gem 'whenever'
+gem 'sidekiq'
 gem 'rack-mini-profiler'
 
 group :doc do
