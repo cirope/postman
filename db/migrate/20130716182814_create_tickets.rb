@@ -3,6 +3,7 @@ class CreateTickets < ActiveRecord::Migration
     create_table :tickets do |t|
       t.string :from, array: true, null: false
       t.string :subject, null: false
+      t.string :status, null: false
       t.text :body
 
       t.timestamps

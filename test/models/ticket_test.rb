@@ -9,10 +9,12 @@ class TicketTest < ActiveSupport::TestCase
   test 'validates blank attributes' do
     @ticket.from_addresses = ''
     @ticket.subject = ''
+    @ticket.status = nil
     
     assert @ticket.invalid?
     assert_error @ticket, :from_addresses, :blank
     assert_error @ticket, :subject, :blank
+    assert_error @ticket, :status, :blank
   end
     
   test 'validates attribute length' do
@@ -20,6 +22,13 @@ class TicketTest < ActiveSupport::TestCase
     
     assert @ticket.invalid?
     assert_error @ticket, :subject, :too_long, count: 255
+  end
+
+  test 'validates included attributes' do
+    @ticket.status = 'invalid'
+
+    assert @ticket.invalid?
+    assert_error @ticket, :status, :inclusion
   end
 
   test 'from addresses' do

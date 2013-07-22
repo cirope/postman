@@ -3,6 +3,7 @@ class Ticket < ActiveRecord::Base
   include Tickets::MessageProcess
   include Tickets::Overrides
   include Tickets::Replies
+  include Tickets::Status
   include Tickets::Subject
   include Tickets::Validation
 

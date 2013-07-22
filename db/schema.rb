@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20130722122653) do
   create_table "tickets", force: true do |t|
     t.string   "from",        null: false, array: true
     t.string   "subject",     null: false
+    t.string   "status",      null: false
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"

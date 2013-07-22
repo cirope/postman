@@ -3,5 +3,6 @@ enhancement:
     - external_user@postman.com
   subject: Enhacement
   body: This should be a great feature proposal =)
+  status: open
   tenant: postman
   category: feature

@@ -33,6 +33,7 @@ es:
       ticket:
         from_addresses: 'Destinatarios'
         subject: 'Asunto'
+        status: 'Estado'
         body: 'Detalles'
         category_id: 'Categoría'
       user:

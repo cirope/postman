@@ -1,4 +1,4 @@
-<h2><%= @ticket %></h2>
+<h2><%= @ticket %> <%= ticket_status @ticket, pull_right: true %></h2>
 
 <% if @ticket.category %>
   <p>

@@ -108,6 +108,9 @@ es:
     update:
       success: 'Caso actualizado correctamente'
       stale_object_error: 'No se pudo actualizar el caso, revise los datos e inténtelo nuevamente'
+    status:
+      open: 'Abierto'
+      closed: 'Cerrado'
 
   users:
     create:
