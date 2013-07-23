@@ -31,6 +31,13 @@ class TicketTest < ActiveSupport::TestCase
     assert_error @ticket, :status, :inclusion
   end
 
+  test 'validates email attributes' do
+    @ticket.from_addresses = 'valid@address.org, invalid@noway'
+
+    assert @ticket.invalid?
+    assert_error @ticket, :from_addresses, :invalid
+  end
+
   test 'from addresses' do
     @ticket.from_addresses = 'one@one.net, two@two.net, three@three.net'
 
