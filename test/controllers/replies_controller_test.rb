@@ -20,8 +20,10 @@ class RepliesControllerTest < ActionController::TestCase
   end
 
   test 'should create reply' do
-    assert_difference ['ActionMailer::Base.deliveries.size', 'Reply.count'] do
-      post :create, ticket_id: @ticket, reply: { body: 'Test' }
+    assert_difference 'ActionMailer::Base.deliveries.size', @ticket.from.size do
+      assert_difference 'Reply.count' do
+        post :create, ticket_id: @ticket, reply: { body: 'Test' }
+      end
     end
 
     assert_redirected_to ticket

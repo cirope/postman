@@ -1,0 +1,10 @@
+<%= t('.reply_delimiter') %>
+
+<%= @body %>
+
+<% if @ticket.ask_for_feedback? @to %>
+--------------------------------------------------------------------------------
+Visite la siguiente dirección para darnos su opinión sobre esta atención:
+
+<%= new_ticket_feedback_url @ticket, from: @to %>
+<% end %>

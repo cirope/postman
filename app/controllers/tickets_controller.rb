@@ -30,7 +30,7 @@ class TicketsController < ApplicationController
     @title = t 'tickets.new.title'
     @ticket = @tenant.tickets.new ticket_params
 
-    create_and_respond { ResponseMailer.delay.reply @ticket, @ticket.body }
+    create_and_respond { send_emails }
   end
 
   # PATCH /tickets/1
@@ -60,9 +60,15 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:from_addresses, :subject, :status, :category_id, :body)
+    params.require(:ticket).permit(:from_addresses, :subject, :status, :feedback_requested, :category_id, :body)
   end
   alias_method :resource_params, :ticket_params
+
+  def send_emails
+    @ticket.from.each do |email|
+      ResponseMailer.delay.reply to: email, ticket: @ticket, body: @ticket.body
+    end
+  end
 
   def resource
     @ticket

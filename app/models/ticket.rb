@@ -1,4 +1,5 @@
 class Ticket < ActiveRecord::Base
+  include Tickets::Feedback
   include Tickets::FromAddresses
   include Tickets::MessageProcess
   include Tickets::Overrides
@@ -9,5 +10,4 @@ class Ticket < ActiveRecord::Base
 
   belongs_to :tenant
   belongs_to :category
-  has_many :feedbacks, dependent: :destroy
 end

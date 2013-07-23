@@ -30,7 +30,7 @@ class RepliesController < ApplicationController
     @title = t 'replies.new.title'
     @reply = @ticket.replies.new reply_params
 
-    create_and_respond { ResponseMailer.delay.reply @ticket, @reply.body }
+    create_and_respond { send_emails }
   end
 
   # PUT/PATCH /replies/1
@@ -63,6 +63,12 @@ class RepliesController < ApplicationController
     params.require(:reply).permit(:body)
   end
   alias_method :resource_params, :reply_params
+
+  def send_emails
+    @ticket.from.each do |email|
+      ResponseMailer.delay.reply to: email, ticket: @ticket, body: @reply.body
+    end
+  end
 
   def resource
     @reply

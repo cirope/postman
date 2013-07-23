@@ -59,7 +59,7 @@ GEM
     mime-types (1.23)
     minitest (4.7.5)
     multi_json (1.7.7)
-    pg (0.15.1)
+    pg (0.16.0)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-mini-profiler (0.1.27)
@@ -130,7 +130,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    whenever (0.8.3)
+    whenever (0.8.4)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
 

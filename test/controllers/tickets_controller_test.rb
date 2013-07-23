@@ -21,14 +21,16 @@ class TicketsControllerTest < ActionController::TestCase
   end
 
   test 'should create ticket' do
-    assert_difference ['ActionMailer::Base.deliveries.size', 'Ticket.count'] do
-      post :create, tenant_id: @tenant, ticket: {
-        from_addresses: @ticket.from_addresses,
-        subject: @ticket.subject,
-        status: @ticket.status,
-        category_id: @ticket.category_id,
-        body: @ticket.body
-      }
+    assert_difference 'ActionMailer::Base.deliveries.size', @ticket.from.size do
+      assert_difference 'Ticket.count' do
+        post :create, tenant_id: @tenant, ticket: {
+          from_addresses: @ticket.from_addresses,
+          subject: @ticket.subject,
+          status: @ticket.status,
+          category_id: @ticket.category_id,
+          body: @ticket.body
+        }
+      end
     end
 
     assert_redirected_to tenant_ticket_url(@tenant, assigns(:ticket))

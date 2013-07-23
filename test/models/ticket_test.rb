@@ -69,6 +69,15 @@ class TicketTest < ActiveSupport::TestCase
     end
   end
 
+  test 'ask for feedback' do
+    assert !@ticket.ask_for_feedback?(@ticket.from.first)
+
+    @ticket.feedbacks.clear
+    @ticket.feedback_requested = true
+
+    assert @ticket.ask_for_feedback?(@ticket.from.first)
+  end
+
   private
 
   def mail with_id: false

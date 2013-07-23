@@ -29,21 +29,33 @@ module Tickets::MessageProcess
     end
 
     def extract_ticket_id message
-      message.subject.slice /#(\d+)/, 1
+      extract_subject(message).slice /#(\d+)/, 1
+    end
+
+    def extract_subject message
+      message.subject.present? ? message.subject : '(no subject)'
     end
 
     def extract_body message
-      reply_delimiter = I18n.t('response_mailer.reply.reply_delimiter')
+      reply_delimiter = I18n.t 'response_mailer.reply.reply_delimiter'
+      part = extract_part message
+      body = part.body.decoded
+      body = body.force_encoding(part.charset).encode('UTF-8') if part.charset
+      clean_body = body.split(reply_delimiter).first
 
-      extract_part(message).split(reply_delimiter).first
+      clean_body.present? ? clean_body : '-'
     end
 
     def extract_part message
-      (message.text_part || message.html_part || message).body.decoded
+      message.text_part || message.html_part || message
     end
 
     def extract_ticket_attributes message
-      { from: message.from, subject: message.subject, body: extract_body(message) }
+      {
+        from: message.from,
+        subject: extract_subject(message),
+        body: extract_body(message)
+      }
     end
   end
 end

@@ -42,6 +42,7 @@ es:
         subject: 'Asunto'
         status: 'Estado'
         body: 'Detalles'
+        feedback_requested: 'Pedir retroalimentación'
         category_id: 'Categoría'
       user:
         name: 'Nombre'

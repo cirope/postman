@@ -4,7 +4,7 @@ class ResponseMailerTest < ActionMailer::TestCase
   test 'reply' do
     ticket = tickets(:enhancement)
     tenant = ticket.tenant
-    mail = ResponseMailer.reply ticket, ticket.body
+    mail = ResponseMailer.reply to: ticket.from.first, ticket: ticket, body: ticket.body
 
     assert_equal ticket.subject_with_id, mail.subject
     assert_equal ticket.from, mail.to
