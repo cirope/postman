@@ -30,6 +30,8 @@ class RepliesController < ApplicationController
     @title = t 'replies.new.title'
     @reply = @ticket.replies.new reply_params
 
+    @ticket.update! feedback_requested: true if params[:feedback_requested]
+
     create_and_respond { send_emails }
   end
 

@@ -19,7 +19,7 @@ class RepliesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should create reply' do
+  test 'should create reply without feedback request' do
     assert_difference 'ActionMailer::Base.deliveries.size', @ticket.from.size do
       assert_difference 'Reply.count' do
         post :create, ticket_id: @ticket, reply: { body: 'Test' }
@@ -27,6 +27,19 @@ class RepliesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to ticket
+    assert !@ticket.reload.feedback_requested
+  end
+
+  test 'should create reply with feedback request' do
+    assert_difference 'ActionMailer::Base.deliveries.size', @ticket.from.size do
+      assert_difference 'Reply.count' do
+        post :create, ticket_id: @ticket, feedback_requested: '1',
+          reply: { body: 'Test' }
+      end
+    end
+
+    assert_redirected_to ticket
+    assert @ticket.reload.feedback_requested
   end
 
   test 'should show reply' do
