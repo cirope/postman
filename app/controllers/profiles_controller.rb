@@ -28,6 +28,6 @@ class ProfilesController < ApplicationController
     @user
   end
 
-  alias_method :after_update_url, :root_url
-  alias_method :edit_resource_url, :profile_url
+  def after_update_url; root_url; end
+  def edit_resource_url; profile_url; end
 end

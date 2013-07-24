@@ -68,5 +68,5 @@ class TenantsController < ApplicationController
     edit_tenant_url @tenant
   end
 
-  alias_method :after_destroy_url, :tenants_url
+  def after_destroy_url; tenants_url; end
 end
