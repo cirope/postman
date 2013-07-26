@@ -7,8 +7,15 @@
 <% if @ticket.ask_for_feedback? @to %>
   <hr />
   <p>
-    Visite el siguiente enlace para darnos su <strong>opinión</strong> sobre esta atención:
+    Por favor, tómate un segundo para calificar mi respuesta y
 
-    <%= link_to 'Opinar sobre esta atención', new_ticket_feedback_url(@ticket, from: @to) %>
+    <%= link_to 'opinar sobre esta atención', new_ticket_feedback_url(@ticket, from: @to) %>
   </p>
+<% end %>
+
+<% reply_history.each do |reply| %>
+  <hr />
+  <blockquote>
+    <%= simple_format reply %>
+  </blockquote>
 <% end %>

@@ -2,9 +2,17 @@
 
 <%= @body %>
 
+<% reply_history.each do |reply| %>
+  --------------------
+
+  <% reply.each_line do |line| %>
+  > <%= line %>
+  <% end %>
+<% end %>
+
 <% if @ticket.ask_for_feedback? @to %>
 --------------------------------------------------------------------------------
-Visite la siguiente dirección para darnos su opinión sobre esta atención:
+Por favor, tómate un segundo para calificar mi respuesta visitando:
 
 <%= new_ticket_feedback_url @ticket, from: @to %>
 <% end %>
