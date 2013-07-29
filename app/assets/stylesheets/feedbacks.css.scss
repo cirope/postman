@@ -1,3 +1,19 @@
-// Place all the styles related to the feedbacks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+a.create-feedback:hover {
+  text-decoration: none;
+
+  .alert {
+    color: #fff;
+  }
+
+  .alert.alert-danger {
+    background-color: #d9534f;
+  }
+  
+  .alert.alert-warning {
+    background-color: #f0ad4e;
+  }
+
+  .alert.alert-success {
+    background-color: #5cb85c;
+  }
+}

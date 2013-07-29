@@ -6,11 +6,18 @@
 
 <% if @ticket.ask_for_feedback? @to %>
   <hr />
-  <p>
-    Por favor, tómate un segundo para calificar mi respuesta y
+  <table>
+    <tr>
+      <td>
+        <%= image_tag attachments['smile.png'].url %>
+      </td>
+      <td>
+        Por favor, tómate un segundo para calificar mi respuesta y
 
-    <%= link_to 'opinar sobre esta atención', new_ticket_feedback_url(@ticket, from: @to) %>
-  </p>
+        <%= link_to 'opinar sobre esta atención', new_ticket_feedback_url(@ticket, from: @to) %>
+      </td>
+    </tr>
+  </table>
 <% end %>
 
 <% reply_history.each do |reply| %>
