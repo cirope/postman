@@ -1,0 +1,5 @@
+es:
+  image:
+    face_smile: 'Feliz'
+    face_plain: 'Normal'
+    face_sad: 'Triste'
