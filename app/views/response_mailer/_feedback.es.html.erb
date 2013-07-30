@@ -3,7 +3,7 @@
   <tr>
     <td>
       <%= link_to new_ticket_feedback_url(@ticket, from: @to) do %>
-        <%= image_tag attachments['face-smile.png'].url %>
+        <%= image_tag attachments['face-smile.png'].url, size: '39x41' %>
         <p>Fue excelente</p>
       <% end %>
       <p>
@@ -15,7 +15,7 @@
     </td>
     <td>
       <%= link_to new_ticket_feedback_url(@ticket, from: @to) do %>
-        <%= image_tag attachments['face-plain.png'].url %>
+        <%= image_tag attachments['face-plain.png'].url, size: '39x41' %>
         <p>Fue buena</p>
       <% end %>
       <p>
@@ -27,7 +27,7 @@
     </td>
     <td>
       <%= link_to new_ticket_feedback_url(@ticket, from: @to) do %>
-        <%= image_tag attachments['face-sad.png'].url %>
+        <%= image_tag attachments['face-sad.png'].url, size: '39x41' %>
         <p>No fue buena</p>
       <% end %>
       <p>
