@@ -19,9 +19,9 @@ es:
       title: 'Editar calificación'
       submit: 'Enviar comentarios'
     index:
-      title: 'Calificaciones de %{ticket}'
-      title_html: 'Calificaciones de %{ticket}'
-      empty_html: 'No hay calificaciones'
+      title: 'Calificaciones de %{ticket} en %{tenant}'
+      title_html: 'Calificaciones de %{ticket} en %{tenant}'
+      empty_html: 'No hay calificaciones para %{ticket}'
     new:
       title: 'Crear calificación'
       question: '¿Cómo calificarías la atención que recibiste?'

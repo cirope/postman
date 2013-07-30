@@ -8,6 +8,7 @@
         <th><%= Ticket.human_attribute_name 'subject' %></th>
         <th><%= Ticket.human_attribute_name 'status' %></th>
         <th><%= Ticket.human_attribute_name 'category_id' %></th>
+        <th><%= Feedback.model_name.human count: 0 %></th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -18,6 +19,7 @@
           <td><%= ticket.subject %></td>
           <td><%= ticket_status ticket %></td>
           <td><%= content_tag :span, ticket.category, class: 'label' if ticket.category %></td>
+          <td><%= link_to feedbacks_count(ticket), ticket_feedbacks_path(ticket) %></td>
           <td><%= link_to_show [@tenant, ticket] %></td>
           <td><%= link_to_edit edit_tenant_ticket_path(@tenant, ticket) %></td>
           <td><%= link_to_destroy [@tenant, ticket] %></td>

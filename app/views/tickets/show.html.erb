@@ -7,8 +7,17 @@
 <% end %>
 
 <p>
+  <strong><%= Tenant.model_name.human count: 1 %></strong>:
+  <%= link_to @ticket.tenant, @ticket.tenant %>
+</p>
+
+<p>
   <strong><%= Ticket.human_attribute_name 'from_addresses' %></strong>:
   <%= @ticket.from_addresses %>
+</p>
+
+<p>
+  <%= link_to feedbacks_label(@ticket), ticket_feedbacks_path(@ticket) %>
 </p>
 
 <blockquote>

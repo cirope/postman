@@ -2,15 +2,15 @@ class FeedbacksController < ApplicationController
   include Responder
 
   before_action :authorize, only: [:index, :show]
-  before_action :set_ticket
+  before_action :set_ticket, :set_tenant
   before_action :check_email, only: [:new, :create, :edit, :update]
   before_action :set_feedback, only:  [:show, :edit, :update, :destroy]
   before_action :set_title, only: [:show, :new, :edit]
   
   # GET /feedbacks
   def index
-    @title = t '.title', ticket: @ticket
-    @feedbacks = Feedback.all
+    @title = t '.title', ticket: @ticket, tenant: @tenant
+    @feedbacks = @ticket.feedbacks
   end
 
   # GET /feedbacks/1
@@ -53,6 +53,10 @@ class FeedbacksController < ApplicationController
 
   def set_ticket
     @ticket = Ticket.find params[:ticket_id]
+  end
+
+  def set_tenant
+    @tenant = @ticket.tenant
   end
 
   def set_title

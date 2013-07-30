@@ -16,4 +16,15 @@ module TicketsHelper
 
     content_tag :span, text, class: classes.join(' ')
   end
+
+  def feedbacks_label ticket
+    [
+      t('navigation.show'),
+      Feedback.model_name.human(count: ticket.feedbacks.count).downcase
+    ].join(' ')
+  end
+
+  def feedbacks_count ticket
+    content_tag :span, ticket.feedbacks.count, class: 'label'
+  end
 end

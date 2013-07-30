@@ -4,15 +4,17 @@
   <strong><%= Feedback.human_attribute_name 'from' %></strong>:
   <%= @feedback.from %>
 </p>
+
 <% if @feedback.notes %>
   <p>
     <strong><%= Feedback.human_attribute_name 'notes' %></strong>:
     <%= simple_format @feedback.notes %>
   </p>
 <% end %>
+
 <p>
   <strong><%= Feedback.human_attribute_name 'ticket' %></strong>:
-  <%= @feedback.ticket %>
+  <%= link_to @ticket, [@tenant, @ticket] %>
 </p>
 
 <%= link_to_edit edit_ticket_feedback_path(@ticket, @feedback) %> |
