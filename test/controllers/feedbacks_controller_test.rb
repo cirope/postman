@@ -16,8 +16,15 @@ class FeedbacksControllerTest < ActionController::TestCase
   end
 
   test 'should get new' do
+    @ticket.feedbacks.clear
+
     get :new, from: @ticket.from.first, ticket_id: @ticket
     assert_response :success
+  end
+
+  test 'should redirect from new if already vote' do
+    get :new, from: @ticket.from.first, ticket_id: @ticket
+    assert_redirected_to edit_ticket_feedback_url(@ticket, @feedback)
   end
 
   test 'should create feedback' do

@@ -19,6 +19,10 @@ class FeedbacksController < ApplicationController
 
   # GET /feedbacks/new
   def new
+    feedback = @ticket.feedbacks.find_by from: params[:from]
+
+    redirect_to edit_ticket_feedback_url(@ticket, feedback) if feedback
+
     @feedback = @ticket.feedbacks.new from: params[:from]
   end
 
