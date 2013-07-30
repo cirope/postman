@@ -16,6 +16,7 @@ gem 'whenever'
 gem 'sidekiq'
 gem 'rack-mini-profiler'
 gem 'capistrano'
+gem 'roadie'
 
 group :doc do
   gem 'sdoc', require: false

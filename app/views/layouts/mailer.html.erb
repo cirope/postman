@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title><%= [t('app_name'), @title].compact.join(' | ') %></title>
+  <style type="text/css">
+    body, #postman_email {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      line-height: 18px;
+      color: #333333;
+      background-color: #ffffff;
+    }
+
+    #postman_email a {
+      color: #0088cc;
+    }
+    
+    #postman_email a:hover {
+      color: #005580;
+    }
+
+    #postman_email footer {
+      display: block;
+      border-top: 1px dotted #333333;
+      font-size: 0.75em;
+      padding-top: 1em;
+    }
+
+    #postman_email h2 {
+      font-size: 1.75em;
+      margin-bottom: 1em;
+    }
+    
+    #postman_email h3 {
+      font-size: 1.25em;
+      margin-bottom: 1em;
+    }
+
+    #postman_email h4 {
+      font-size: 1.1em;
+      margin: 1em 0em;
+    }
+
+    #postman_email p {
+      margin-bottom: 1em;
+    }
+    
+    #postman_email pre.hero-unit {
+      font-size: 1.5em;
+    }
+    
+    #postman_email table {
+      margin-bottom: 18px;
+      border: 1px solid #dddddd;
+      border-left: 0;
+      border-collapse: collapsed;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+    }
+    
+    #postman_email table th,
+    #postman_email table td {
+      padding: 8px;
+      line-height: 18px;
+      text-align: left;
+      vertical-align: top;
+      border-left: 1px solid #dddddd;
+    }
+    
+    #postman_email table td {
+      border-top: 1px solid #dddddd;
+    }
+    
+    #postman_email table th {
+      font-weight: bold;
+    }
+    
+    #postman_email table thead th {
+      vertical-align: bottom;
+    }
+
+    #postman_email table.feedback {
+      border: none;
+    }
+
+    #postman_email table.feedback td {
+      text-align: center;
+      padding-right: 1em;
+      border: none;
+    }
+
+    #postman_email table.feedback td p {
+      margin: 0em;
+    }
+
+    #postman_email table.feedback td p small {
+      font-size: 75%;
+      color: #999;
+      border: none;
+      text-decoration: none;
+    }
+
+    #postman_email .delimiter {
+      font-size: 75%;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div id="postman_email"><%= yield %></div>
+</body>
+</html>

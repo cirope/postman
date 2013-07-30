@@ -1,0 +1,41 @@
+<h4>Por favor, tómate un segundo para calificar mi respuesta:</h4>
+<table class="feedback">
+  <tr>
+    <td>
+      <%= link_to new_ticket_feedback_url(@ticket, from: @to) do %>
+        <%= image_tag attachments['face-smile.png'].url %>
+        <p>Fue excelente</p>
+      <% end %>
+      <p>
+        <small>
+          Rápido, amigable, útil,<br />
+          agradable ¡Buen trabajo!
+        </small>
+      </p>
+    </td>
+    <td>
+      <%= link_to new_ticket_feedback_url(@ticket, from: @to) do %>
+        <%= image_tag attachments['face-plain.png'].url %>
+        <p>Estuvo bien</p>
+      <% end %>
+      <p>
+        <small>
+          Bien, pero definitivamente<br />
+          pudo ser mejor
+        </small>
+      </p>
+    </td>
+    <td>
+      <%= link_to new_ticket_feedback_url(@ticket, from: @to) do %>
+        <%= image_tag attachments['face-sad.png'].url %>
+        <p>No fue buena</p>
+      <% end %>
+      <p>
+        <small>
+          Definitivamente<br />
+          no estoy feliz
+        </small>
+      </p>
+    </td>
+  </tr>
+</table>

@@ -1,24 +1,10 @@
-<p style="font-size: 75%; color: #333;">
+<p class="delimiter">
   <%= t '.reply_delimiter' %>
 </p>
 
 <%= simple_format @body %>
 
-<% if @ticket.ask_for_feedback? @to %>
-  <hr />
-  <table>
-    <tr>
-      <td>
-        <%= image_tag attachments['smile.png'].url %>
-      </td>
-      <td>
-        Por favor, tómate un segundo para calificar mi respuesta y
-
-        <%= link_to 'opinar sobre esta atención', new_ticket_feedback_url(@ticket, from: @to) %>
-      </td>
-    </tr>
-  </table>
-<% end %>
+<%= render 'feedback' if @ticket.ask_for_feedback? @to %>
 
 <% reply_history.each do |reply| %>
   <hr />
