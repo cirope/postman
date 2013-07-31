@@ -3,6 +3,10 @@ module TicketsHelper
     Category.order 'name ASC'
   end
 
+  def users
+    User.order 'name ASC'
+  end
+
   def status
     Ticket::STATUS.map { |s| [t("tickets.status.#{s}"), s] }
   end
@@ -15,6 +19,12 @@ module TicketsHelper
     classes << (ticket.status == 'closed' ? 'label-error' : 'label-success')
 
     content_tag :span, text, class: classes.join(' ')
+  end
+
+  def ticket_class ticket
+    if ticket.user
+      ticket.open? ? 'warning' : 'active'
+    end
   end
 
   def feedbacks_label ticket

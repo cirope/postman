@@ -8,4 +8,12 @@ module Tickets::Status
 
     after_initialize(on: :create) { self.status ||= 'open' }
   end
+
+  def open?
+    status == 'open'
+  end
+
+  def closed?
+    status == 'closed'
+  end
 end

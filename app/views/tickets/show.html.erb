@@ -6,6 +6,13 @@
   </p>
 <% end %>
 
+<% if @ticket.user %>
+  <p>
+    <strong><%= Ticket.human_attribute_name 'user_id' %></strong>:
+    <%= link_to @ticket.user, @ticket.user %>
+  </p>
+<% end %>
+
 <p>
   <strong><%= Tenant.model_name.human count: 1 %></strong>:
   <%= link_to @ticket.tenant, @ticket.tenant %>

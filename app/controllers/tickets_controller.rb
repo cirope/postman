@@ -60,7 +60,9 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:from_addresses, :subject, :status, :feedback_requested, :category_id, :body)
+    params.require(:ticket).permit(
+      :from_addresses, :subject, :status, :feedback_requested, :category_id, :user_id, :body
+    )
   end
   alias_method :resource_params, :ticket_params
 

@@ -10,4 +10,5 @@ class Ticket < ActiveRecord::Base
 
   belongs_to :tenant
   belongs_to :category
+  belongs_to :user
 end

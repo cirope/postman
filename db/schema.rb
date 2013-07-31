@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130722215450) do
+ActiveRecord::Schema.define(version: 20130731015444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,10 +65,12 @@ ActiveRecord::Schema.define(version: 20130722215450) do
     t.integer  "tenant_id",                          null: false
     t.integer  "category_id"
     t.boolean  "feedback_requested", default: false, null: false
+    t.integer  "user_id"
   end
 
   add_index "tickets", ["category_id"], name: "index_tickets_on_category_id", using: :btree
   add_index "tickets", ["tenant_id"], name: "index_tickets_on_tenant_id", using: :btree
+  add_index "tickets", ["user_id"], name: "index_tickets_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",                   null: false

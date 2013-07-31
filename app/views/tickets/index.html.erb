@@ -1,7 +1,7 @@
 <% if @tickets.empty? %>
   <%= render 'shared/empty_index', message: t('.empty_html') %>
 <% else %>
-  <table class="table table-striped table-hover">
+  <table class="table">
     <caption><%= t '.title_html', tenant: link_to(@tenant, @tenant, title: @tenant) %></caption>
     <thead>
       <tr>
@@ -15,7 +15,7 @@
 
     <tbody>
       <% @tickets.each do |ticket| %>
-        <tr>
+        <tr class="<%= ticket_class ticket %>">
           <td><%= ticket.subject %></td>
           <td class="hidden-sm"><%= ticket_status ticket %></td>
           <td class="visible-lg"><%= content_tag :span, ticket.category, class: 'label' if ticket.category %></td>
