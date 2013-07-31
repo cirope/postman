@@ -2,11 +2,11 @@
 
 Support app
 
-=== Build Status {<img src="https://secure.travis-ci.org/francocatena/postman.png"/>}[http://travis-ci.org/francocatena/postman]
+=== Build Status {<img src="https://secure.travis-ci.org/cirope/postman.png"/>}[http://travis-ci.org/cirope/postman]
 
-=== Dependency Status {<img src="https://gemnasium.com/francocatena/postman.png?travis"/>}[https://gemnasium.com/francocatena/postman]
+=== Dependency Status {<img src="https://gemnasium.com/cirope/postman.png?travis"/>}[https://gemnasium.com/cirope/postman]
 
-=== Code Status {<img src="https://codeclimate.com/github/francocatena/postman.png"/>}[https://codeclimate.com/github/francocatena/postman]
+=== Code Status {<img src="https://codeclimate.com/github/cirope/postman.png"/>}[https://codeclimate.com/github/cirope/postman]
 
 == (The MIT License)
 

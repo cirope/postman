@@ -2,13 +2,14 @@ class TicketsController < ApplicationController
   include Responder
 
   before_action :authorize, :set_tenant
-  before_action :set_ticket, only:  [:show, :edit, :update, :destroy]
+  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
   before_action :set_title, only: [:show, :new, :edit]
   
   # GET /tickets
   def index
     @title = t '.title', tenant: @tenant
-    @tickets = @tenant.tickets.includes :category
+    @tickets = @tenant ? @tenant.tickets.includes(:category) : Ticket.for(current_user)
+    @tickets = @tickets.sorted
   end
 
   # GET /tickets/1
@@ -52,7 +53,7 @@ class TicketsController < ApplicationController
   end
 
   def set_tenant
-    @tenant = Tenant.find params[:tenant_id]
+    @tenant = Tenant.find params[:tenant_id] if params[:tenant_id]
   end
 
   def set_title

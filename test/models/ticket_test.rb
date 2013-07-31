@@ -85,6 +85,12 @@ class TicketTest < ActiveSupport::TestCase
     assert @ticket.ask_for_feedback?(@ticket.from.first)
   end
 
+  test 'for' do
+    user = users :franco
+
+    assert_equal user.tickets.sorted.to_a, Ticket.for(user).sorted.to_a
+  end
+
   private
 
   def mail with_id: false
