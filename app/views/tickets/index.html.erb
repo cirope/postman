@@ -22,9 +22,9 @@
           <td class="visible-lg"><%= content_tag :span, ticket.category, class: 'label' if ticket.category %></td>
           <td><%= link_to feedbacks_count(ticket), ticket_feedbacks_path(ticket) %></td>
           <td class="visible-lg"><%= l ticket.created_at, format: :short %></td>
-          <td><%= link_to_show [@tenant, ticket] %></td>
-          <td><%= link_to_edit edit_tenant_ticket_path(@tenant, ticket) %></td>
-          <td><%= link_to_destroy [@tenant, ticket] %></td>
+          <td><%= link_to_show ticket %></td>
+          <td><%= link_to_edit edit_ticket_path(ticket) %></td>
+          <td><%= link_to_destroy ticket %></td>
         </tr>
       <% end %>
     </tbody>

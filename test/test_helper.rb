@@ -21,7 +21,7 @@ class ActiveSupport::TestCase
 end
 
 class ActionController::TestCase
-  def login
-    cookies[:auth_token] = users(:franco).auth_token
+  def login user = users(:franco)
+    cookies[:auth_token] = user.auth_token
   end
 end

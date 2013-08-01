@@ -11,10 +11,10 @@ Postman::Application.routes.draw do
   # Resources
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :users
-  resources :tenants do
+  resources :tenants, shallow: true do
     resources :tickets
   end
-  resources :tickets, only: [] do
+  resources :tickets, only: :index do
     resources :feedbacks, constraints: { id: /.*/ }, except: [:destroy]
     resources :replies
   end

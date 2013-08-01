@@ -81,7 +81,7 @@ class RepliesController < ApplicationController
   end
 
   def after_create_url
-    [@ticket.tenant, @ticket]
+    @ticket
   end
   alias_method :after_update_url, :after_create_url
   alias_method :after_destroy_url, :after_create_url

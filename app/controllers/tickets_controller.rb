@@ -8,8 +8,12 @@ class TicketsController < ApplicationController
   # GET /tickets
   def index
     @title = t '.title', tenant: @tenant
-    @tickets = @tenant ? @tenant.tickets.includes(:category) : Ticket.for(current_user)
-    @tickets = @tickets.sorted
+
+    if @tenant
+      @tickets = @tenant.tickets.includes(:category).sorted
+    else
+      @tickets = Ticket.loose_or_for(current_user).sorted
+    end
   end
 
   # GET /tickets/1
@@ -49,7 +53,8 @@ class TicketsController < ApplicationController
   private
 
   def set_ticket
-    @ticket = @tenant.tickets.find params[:id]
+    @ticket = @tenant ? @tenant.tickets.find(params[:id]) : Ticket.find(params[:id])
+    @tenant ||= @ticket.tenant
   end
 
   def set_tenant
@@ -76,14 +81,11 @@ class TicketsController < ApplicationController
   def resource
     @ticket
   end
-  
-  def after_create_url
-    [@tenant, @ticket]
-  end
-  alias_method :after_update_url, :after_create_url
+  alias_method :after_create_url, :resource
+  alias_method :after_update_url, :resource
 
   def edit_resource_url
-    edit_tenant_ticket_url @tenant, @ticket
+    edit_ticket_url @ticket
   end
 
   def after_destroy_url

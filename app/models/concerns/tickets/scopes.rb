@@ -6,7 +6,7 @@ module Tickets::Scopes
   end
 
   module ClassMethods
-    def for user
+    def loose_or_for user
       where(user_id: [nil, user.id])
     end
   end

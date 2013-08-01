@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RepliesControllerTest < ActionController::TestCase
   setup do
-    @reply = replies(:acknowledge)
+    @reply = replies :acknowledge
     @ticket = @reply.ticket
 
     login
@@ -26,7 +26,7 @@ class RepliesControllerTest < ActionController::TestCase
       end
     end
 
-    assert_redirected_to ticket
+    assert_redirected_to @ticket
     assert !@ticket.reload.feedback_requested
   end
 
@@ -38,7 +38,7 @@ class RepliesControllerTest < ActionController::TestCase
       end
     end
 
-    assert_redirected_to ticket
+    assert_redirected_to @ticket
     assert @ticket.reload.feedback_requested
   end
 
@@ -54,7 +54,7 @@ class RepliesControllerTest < ActionController::TestCase
 
   test 'should update reply' do
     patch :update, ticket_id: @ticket, id: @reply, reply: { body: 'Updated' }
-    assert_redirected_to ticket
+    assert_redirected_to @ticket
   end
 
   test 'should destroy reply' do
@@ -62,12 +62,6 @@ class RepliesControllerTest < ActionController::TestCase
       delete :destroy, ticket_id: @ticket, id: @reply
     end
 
-    assert_redirected_to ticket
-  end
-
-  private
-
-  def ticket
-    [@ticket.tenant, @ticket]
+    assert_redirected_to @ticket
   end
 end

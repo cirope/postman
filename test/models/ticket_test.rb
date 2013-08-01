@@ -85,10 +85,12 @@ class TicketTest < ActiveSupport::TestCase
     assert @ticket.ask_for_feedback?(@ticket.from.first)
   end
 
-  test 'for' do
+  test 'loose or for' do
     user = users :franco
+    loose = Ticket.create! @ticket.attributes.merge(id: nil, user_id: nil)
+    ticket_ids = (user.tickets.to_a + [loose]).map(&:id).sort
 
-    assert_equal user.tickets.sorted.to_a, Ticket.for(user).sorted.to_a
+    assert_equal ticket_ids, Ticket.loose_or_for(user).pluck('id').sort
   end
 
   private

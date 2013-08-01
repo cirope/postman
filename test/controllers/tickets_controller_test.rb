@@ -6,13 +6,21 @@ class TicketsControllerTest < ActionController::TestCase
     @ticket = tickets(:enhancement)
     @tenant = @ticket.tenant
 
-    login
+    login @ticket.user
   end
 
-  test 'should get index' do
+  test 'should get index for tenant' do
     get :index, tenant_id: @tenant
     assert_response :success
     assert_not_nil assigns(:tickets)
+    assert assigns(:tickets).all? { |t| t.tenant_id == @tenant.id }
+  end
+
+  test 'should get index for current user' do
+    get :index
+    assert_response :success
+    assert_not_nil assigns(:tickets)
+    assert assigns(:tickets).all? { |t| t.user_id == @ticket.user_id }
   end
 
   test 'should get new' do
@@ -33,7 +41,7 @@ class TicketsControllerTest < ActionController::TestCase
       end
     end
 
-    assert_redirected_to tenant_ticket_url(@tenant, assigns(:ticket))
+    assert_redirected_to ticket_url(assigns(:ticket))
   end
 
   test 'should show ticket' do
@@ -48,7 +56,7 @@ class TicketsControllerTest < ActionController::TestCase
 
   test 'should update ticket' do
     patch :update, tenant_id: @tenant, id: @ticket, ticket: { subject: 'new' }
-    assert_redirected_to tenant_ticket_url(@tenant, assigns(:ticket))
+    assert_redirected_to ticket_url(assigns(:ticket))
   end
 
   test 'should destroy ticket' do
