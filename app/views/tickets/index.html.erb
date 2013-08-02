@@ -1,34 +1,36 @@
 <% if @tickets.empty? %>
   <%= render 'shared/empty_index', message: t('.empty_html') %>
 <% else %>
-  <table class="table">
-    <caption><%= t '.title_html', tenant: link_to(@tenant, @tenant, title: @tenant) %></caption>
-    <thead>
-      <tr>
-        <th><%= Ticket.human_attribute_name 'subject' %></th>
-        <th class="hidden-sm"><%= Ticket.human_attribute_name 'status' %></th>
-        <th class="visible-lg"><%= Ticket.human_attribute_name 'category_id' %></th>
-        <th><%= Feedback.model_name.human count: 0 %></th>
-        <th class="visible-lg"><%= Ticket.human_attribute_name 'created_at' %></th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @tickets.each do |ticket| %>
-        <tr class="<%= ticket_class ticket %>">
-          <td><%= ticket.subject %></td>
-          <td class="hidden-sm"><%= ticket_status ticket %></td>
-          <td class="visible-lg"><%= content_tag :span, ticket.category, class: 'label' if ticket.category %></td>
-          <td><%= link_to feedbacks_count(ticket), ticket_feedbacks_path(ticket) %></td>
-          <td class="visible-lg"><%= l ticket.created_at, format: :short %></td>
-          <td><%= link_to_show ticket %></td>
-          <td><%= link_to_edit edit_ticket_path(ticket) %></td>
-          <td><%= link_to_destroy ticket %></td>
+  <% tickets_group_by_tenant.each do |tenant, tickets| %>
+    <table class="table">
+      <caption><%= t '.title_html', tenant: link_to(tenant, tenant, title: tenant) %></caption>
+      <thead>
+        <tr>
+          <th><%= Ticket.human_attribute_name 'subject' %></th>
+          <th class="hidden-sm"><%= Ticket.human_attribute_name 'status' %></th>
+          <th class="visible-lg"><%= Ticket.human_attribute_name 'category_id' %></th>
+          <th><%= Feedback.model_name.human count: 0 %></th>
+          <th class="visible-lg"><%= Ticket.human_attribute_name 'created_at' %></th>
+          <th colspan="3"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% tickets.each do |ticket| %>
+          <tr class="<%= ticket_class ticket %>">
+            <td><%= ticket.subject %></td>
+            <td class="hidden-sm"><%= ticket_status ticket %></td>
+            <td class="visible-lg"><%= content_tag :span, ticket.category, class: 'label' if ticket.category %></td>
+            <td><%= link_to feedbacks_count(ticket), ticket_feedbacks_path(ticket) %></td>
+            <td class="visible-lg"><%= l ticket.created_at, format: :short %></td>
+            <td><%= link_to_show ticket %></td>
+            <td><%= link_to_edit edit_ticket_path(ticket) %></td>
+            <td><%= link_to_destroy ticket %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 <% end %>
 
-<%= link_to_new new_tenant_ticket_path(@tenant), class: 'btn btn-primary' %>
+<%= link_to_new new_tenant_ticket_path(@tenant), class: 'btn btn-primary' if @tenant %>

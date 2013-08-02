@@ -10,7 +10,7 @@ class TicketsController < ApplicationController
     @title = t '.title', tenant: @tenant
 
     if @tenant
-      @tickets = @tenant.tickets.includes(:category).sorted
+      @tickets = @tenant.tickets.open.sorted.includes(:category)
     else
       @tickets = Ticket.loose_or_for(current_user).sorted
     end

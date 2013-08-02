@@ -11,6 +11,16 @@ module TicketsHelper
     Ticket::STATUS.map { |s| [t("tickets.status.#{s}"), s] }
   end
 
+  def tickets_group_by_tenant
+    if @tenant
+      [[@tenant, @tickets]]
+    else
+      @tickets.group_by(&:tenant_id).map do |tenant_id, tickets|
+        [Tenant.find(tenant_id), tickets]
+      end
+    end
+  end
+
   def ticket_status ticket, pull_right: false
     text = t "tickets.status.#{ticket.status}"
     classes = ['label']
