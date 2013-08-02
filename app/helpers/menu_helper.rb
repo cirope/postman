@@ -10,6 +10,9 @@ module MenuHelper
   end
 
   def pending_tickets_badge
-    content_tag :span, pending_tickets_count, class: 'label label-danger'
+    classes = ['label']
+    classes << 'label-danger' if pending_tickets_count > 0
+
+    content_tag :span, pending_tickets_count, class: classes.join(' ')
   end
 end
