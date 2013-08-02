@@ -13,4 +13,9 @@ class ApplicationController < ActionController::Base
 
     redirect_to login_url, alert: t('messages.not_authorized') unless current_user
   end
+
+  def pending_tickets_count
+    @pending_tickets_count ||= Ticket.loose_or_for(current_user).count if current_user
+  end
+  helper_method :pending_tickets_count
 end

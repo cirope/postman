@@ -29,13 +29,25 @@ class ApplicationControllerTest < ActionController::TestCase
     assert_nil @response.location
   end
 
+  test 'should return pending ticket count' do
+    assert_nil pending_tickets_count
+
+    login
+
+    assert_equal Ticket.loose_or_for(current_user).count, pending_tickets_count
+  end
+
   private
 
   def current_user
-    @controller.send(:current_user)
+    @controller.send :current_user
   end
 
   def authorize
-    @controller.send(:authorize)
+    @controller.send :authorize
+  end
+
+  def pending_tickets_count
+    @controller.send :pending_tickets_count
   end
 end
