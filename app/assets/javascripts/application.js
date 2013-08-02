@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require turbolinks-events
 //= require bootstrap
 //= require feedbacks
 //= require password_resets
