@@ -121,7 +121,7 @@ es:
       title: 'Editar caso'
     index:
       new: 'Nuevo caso'
-      title: 'Casos de %{tenant}'
+      title: 'Casos de %{owner}'
       title_html: 'Casos de %{tenant}'
       empty_html: 'No hay casos, puede crear uno con el botón <span class="label label-info">Nuevo caso</span>'
     new:

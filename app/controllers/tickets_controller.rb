@@ -7,7 +7,7 @@ class TicketsController < ApplicationController
   
   # GET /tickets
   def index
-    @title = t '.title', tenant: @tenant
+    @title = t '.title', owner: (@tenant || current_user)
 
     if @tenant
       @tickets = @tenant.tickets.open.sorted.includes(:category)
