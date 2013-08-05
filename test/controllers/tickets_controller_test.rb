@@ -20,7 +20,14 @@ class TicketsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:tickets)
-    assert assigns(:tickets).all? { |t| t.user_id == @ticket.user_id }
+    assert assigns(:tickets).all? { |t| t.user_id.nil? || t.user_id == @ticket.user_id }
+  end
+
+  test 'should get index for current user in js' do
+    get :index, format: :js
+    assert_response :success
+    assert_not_nil assigns(:tickets_count)
+    assert_equal Mime::JS, response.content_type
   end
 
   test 'should get new' do

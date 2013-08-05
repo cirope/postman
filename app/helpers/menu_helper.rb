@@ -13,6 +13,6 @@ module MenuHelper
     classes = ['label']
     classes << 'label-danger' if pending_tickets_count > 0
 
-    content_tag :span, pending_tickets_count, class: classes.join(' ')
+    content_tag :span, pending_tickets_count, class: classes.join(' '), id: 'ticket-count'
   end
 end

@@ -13,6 +13,7 @@ class TicketsController < ApplicationController
       @tickets = @tenant.tickets.open.sorted.includes(:category)
     else
       @tickets = Ticket.loose_or_for(current_user).sorted
+      @tickets_count = @tickets.count
     end
   end
 

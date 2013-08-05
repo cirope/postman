@@ -13,12 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require turbolinks-events
+//= require turbolinks_events
 //= require bootstrap
 //= require feedbacks
 //= require password_resets
+//= require pending_tickets
 //= require profiles
 //= require replies
 //= require tenants
 //= require tickets
+//= require title_helper
 //= require users
