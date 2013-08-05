@@ -1,4 +1,4 @@
-<%= simple_form_for [@ticket, @reply] do |f| %>
+<%= simple_form_for [@ticket, @reply], defaults: input_defaults do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">

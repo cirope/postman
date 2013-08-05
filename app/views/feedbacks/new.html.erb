@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-  <div class="col col-lg-6 col-offset-3">
+  <div class="col col-lg-6 col-lg-offset-3">
     <% feedback_scores.each do |score| %>
       <%= link_to create_feedback_path(score), class: 'create-feedback', method: :post do %>
         <%= render "score_description_for_#{score}" %>

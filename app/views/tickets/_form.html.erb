@@ -1,4 +1,4 @@
-<%= simple_form_for [(@tenant if @ticket.new_record?), @ticket].compact do |f| %>
+<%= simple_form_for [(@tenant if @ticket.new_record?), @ticket].compact, defaults: input_defaults do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
