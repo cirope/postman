@@ -17,6 +17,7 @@ gem 'sidekiq'
 gem 'rack-mini-profiler'
 gem 'capistrano'
 gem 'roadie'
+gem 'newrelic_rpm'
 
 group :doc do
   gem 'sdoc', require: false
