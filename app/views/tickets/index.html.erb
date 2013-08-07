@@ -2,8 +2,13 @@
   <%= render 'shared/empty_index', message: t('.empty_html') %>
 <% else %>
   <% tickets_group_by_tenant.each do |tenant, tickets| %>
-    <table class="table">
-      <caption><%= t '.title_html', tenant: link_to(tenant, tenant, title: tenant) %></caption>
+    <table class="table table-condensed">
+      <caption>
+        <h4 class="text-left page-header">
+          <%= t '.title_html', tenant: link_to(tenant, tenant, title: tenant) %>
+        </h4>
+      </caption>
+
       <thead>
         <tr>
           <th><%= Ticket.human_attribute_name 'subject' %></th>
