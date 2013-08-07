@@ -1,5 +1,6 @@
 class RepliesController < ApplicationController
   include Responder
+  include Tickets::Email
 
   before_action :authorize
   before_action :set_ticket
@@ -32,7 +33,7 @@ class RepliesController < ApplicationController
 
     @ticket.update! feedback_requested: true if params[:feedback_requested]
 
-    create_and_respond { send_emails }
+    create_and_respond { send_emails @reply.body }
   end
 
   # PUT/PATCH /replies/1
@@ -65,12 +66,6 @@ class RepliesController < ApplicationController
     params.require(:reply).permit(:body)
   end
   alias_method :resource_params, :reply_params
-
-  def send_emails
-    @ticket.from.each do |email|
-      ResponseMailer.delay.reply to: email, ticket: @ticket, body: @reply.body
-    end
-  end
 
   def resource
     @reply

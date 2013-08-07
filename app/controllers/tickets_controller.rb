@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   include Responder
+  include Tickets::Email
 
   before_action :authorize, :set_tenant
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
@@ -36,7 +37,7 @@ class TicketsController < ApplicationController
     @title = t 'tickets.new.title'
     @ticket = @tenant.tickets.new ticket_params
 
-    create_and_respond { send_emails }
+    create_and_respond { send_emails @ticket.body }
   end
 
   # PATCH /tickets/1
@@ -72,12 +73,6 @@ class TicketsController < ApplicationController
     )
   end
   alias_method :resource_params, :ticket_params
-
-  def send_emails
-    @ticket.from.each do |email|
-      ResponseMailer.delay.reply to: email, ticket: @ticket, body: @ticket.body
-    end
-  end
 
   def resource
     @ticket
