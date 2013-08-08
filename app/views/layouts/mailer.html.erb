@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= locale %>">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8">
   <title><%= [t('app_name'), @title].compact.join(' | ') %></title>
   <style type="text/css">
     body, #postman_email {
@@ -40,6 +40,13 @@
     #postman_email h4 {
       font-size: 1.1em;
       margin: 1em 0em;
+    }
+
+    #postman_email hr {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border: 0;
+      border-top: 1px dotted #eeeeee;
     }
 
     #postman_email p {
@@ -104,7 +111,7 @@
 
     #postman_email .delimiter {
       font-size: 75%;
-      color: #999;
+      color: #b5b5b5;
     }
   </style>
 </head>

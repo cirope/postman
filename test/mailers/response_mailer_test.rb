@@ -9,7 +9,8 @@ class ResponseMailerTest < ActionMailer::TestCase
     assert_equal ticket.subject_with_id, mail.subject
     assert_equal ticket.from, mail.to
     assert_equal [tenant.email], mail.from
-    assert_match ticket.body, mail.body.encoded
+    assert_match ticket.body, mail.text_part.body.decoded
+    assert_match ticket.body, mail.html_part.body.decoded
   end
 
   test 'reply with feedback' do
