@@ -7,5 +7,6 @@
 
     if count > 0
       ticketCount.addClass 'label-danger'
+      ticketAlert.removeClass 'hidden'
     else
       ticketCount.removeClass 'label-danger'
