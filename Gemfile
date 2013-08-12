@@ -22,3 +22,8 @@ gem 'newrelic_rpm'
 group :doc do
   gem 'sdoc', require: false
 end
+
+group :test do
+  gem 'capybara'
+  gem 'poltergeist'
+end

@@ -20,8 +20,7 @@ class ActiveSupport::TestCase
   end
 end
 
-class ActionController::TestCase
-  def login user = users(:franco)
-    cookies[:auth_token] = user.auth_token
-  end
-end
+# Custom extensions
+require_relative 'extensions/integration_test'
+require_relative 'extensions/action_controller_test'
+require_relative 'extensions/active_record'
