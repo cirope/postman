@@ -1,4 +1,4 @@
-<div class="alert hidden">
+<div class="alert hidden" id="ticket-alert" data-last-ticket-id="<%= @last_ticket.to_param %>">
   <p>
     <%= t '.update_tickets_html', link: link_to(t('.update_link'), tickets_path) %>
   </p>

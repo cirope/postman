@@ -9,13 +9,8 @@ class TicketsController < ApplicationController
   # GET /tickets
   def index
     @title = t '.title', owner: (@tenant || current_user)
-
-    if @tenant
-      @tickets = @tenant.tickets.open.sorted.includes(:category)
-    else
-      @tickets = Ticket.loose_or_for(current_user).sorted
-      @tickets_count = @tickets.count
-    end
+    
+    @tenant ? set_tickets_with_tenant : set_tickets_data
   end
 
   # GET /tickets/1
@@ -86,5 +81,15 @@ class TicketsController < ApplicationController
 
   def after_destroy_url
     tenant_tickets_url @tenant
+  end
+
+  def set_tickets_with_tenant
+    @tickets = @tenant.tickets.open.sorted.includes :category
+  end
+
+  def set_tickets_data
+    @tickets = Ticket.loose_or_for(current_user).sorted
+    @tickets_count = @tickets.count
+    @last_ticket = @tickets.last
   end
 end

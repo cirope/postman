@@ -2,7 +2,7 @@ module Tickets::Scopes
   extend ActiveSupport::Concern
 
   included do
-    scope :sorted, -> { order('created_at ASC') }
+    scope :sorted, -> { order 'created_at ASC' }
     scope :open, -> { where status: 'open' }
   end
 
