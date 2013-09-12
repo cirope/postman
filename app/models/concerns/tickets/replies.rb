@@ -6,6 +6,16 @@ module Tickets::Replies
   end
 
   def create_reply body
-    replies.create! body: body
+    replies.build body: body
+    reopen
+
+    save!
+  end
+
+  private
+
+  def reopen
+    self.user_id = nil
+    mark_as_open
   end
 end

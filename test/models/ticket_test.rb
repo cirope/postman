@@ -69,11 +69,17 @@ class TicketTest < ActiveSupport::TestCase
   test 'receive message update' do
     mail = mail(with_id: true)
 
+    assert @ticket.update status: 'closed'
+    assert_not_nil @ticket.user
+
     assert_no_difference 'Ticket.count' do
       assert_difference '@ticket.replies.count' do
         Ticket.receive_mail mail
       end
     end
+
+    assert @ticket.reload.open?
+    assert_nil @ticket.user
   end
 
   test 'ask for feedback' do
@@ -91,6 +97,14 @@ class TicketTest < ActiveSupport::TestCase
     ticket_ids = (user.tickets.to_a + [loose]).map(&:id).sort
 
     assert_equal ticket_ids, Ticket.loose_or_for(user).pluck('id').sort
+  end
+
+  test 'status methods' do
+    @ticket.mark_as_closed
+    assert @ticket.closed?
+
+    @ticket.mark_as_open
+    assert @ticket.open?
   end
 
   private

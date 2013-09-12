@@ -13,7 +13,15 @@ module Tickets::Status
     status == 'open'
   end
 
+  def mark_as_open
+    self.status = 'open'
+  end
+
   def closed?
     status == 'closed'
+  end
+
+  def mark_as_closed
+    self.status = 'closed'
   end
 end
