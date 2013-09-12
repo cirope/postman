@@ -31,7 +31,7 @@
           <tr class="<%= ticket_class ticket %>">
             <td><%= ticket.subject %></td>
             <td class="hidden-sm"><%= ticket_status ticket %></td>
-            <td class="visible-lg"><%= content_tag :span, ticket.category, class: 'label' if ticket.category %></td>
+            <td class="visible-lg"><%= content_tag :span, ticket.category, class: 'label label-default' if ticket.category %></td>
             <td><%= link_to feedbacks_count(ticket), ticket_feedbacks_path(ticket) %></td>
             <td class="visible-lg"><%= l ticket.created_at, format: :short %></td>
             <td><%= link_to_show ticket %></td>

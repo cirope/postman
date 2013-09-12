@@ -26,7 +26,7 @@ module TicketsHelper
     classes = ['label']
 
     classes << 'pull-right' if pull_right
-    classes << (ticket.status == 'closed' ? 'label-error' : 'label-success')
+    classes << (ticket.status == 'closed' ? 'label-danger' : 'label-success')
 
     content_tag :span, text, class: classes.join(' ')
   end
@@ -45,6 +45,6 @@ module TicketsHelper
   end
 
   def feedbacks_count ticket
-    content_tag :span, ticket.feedbacks.count, class: 'label'
+    content_tag :span, ticket.feedbacks.count, class: 'label label-default'
   end
 end

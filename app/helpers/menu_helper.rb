@@ -11,7 +11,7 @@ module MenuHelper
 
   def pending_tickets_badge
     classes = ['label']
-    classes << 'label-danger' if pending_tickets_count > 0
+    classes << (pending_tickets_count > 0 ? 'label-danger' : 'label-default')
 
     content_tag :span, pending_tickets_count, class: classes.join(' '), id: 'ticket-count'
   end

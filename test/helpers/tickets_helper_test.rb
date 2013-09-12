@@ -16,7 +16,7 @@ class TicketsHelperTest < ActionView::TestCase
 
     ticket.status = 'closed'
 
-    assert_match /label-error/, ticket_status(ticket)
+    assert_match /label-danger/, ticket_status(ticket)
   end
 
   test 'ticket class' do
