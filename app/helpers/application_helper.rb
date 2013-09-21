@@ -3,10 +3,6 @@ module ApplicationHelper
     [t('app_name'), title_with_count].compact.join(' | ')
   end
 
-  def input_defaults
-    { input_html: { class: 'form-control' } }
-  end
-
   private
 
   def title_with_count

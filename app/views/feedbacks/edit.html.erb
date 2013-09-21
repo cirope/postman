@@ -3,7 +3,7 @@
 <% if @feedback.notes.blank? %>
   <div class="row">
     <div class="col col-lg-6 col-lg-offset-3">
-      <%= simple_form_for [@ticket, @feedback], defaults: input_defaults do |f| %>
+      <%= simple_form_for [@ticket, @feedback] do |f| %>
         <%= f.error_notification %>
 
         <div class="form-inputs">

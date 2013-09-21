@@ -14,13 +14,7 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal [I18n.t('app_name'), "(#@count) #@title"].join(' | '), title
   end
 
-  test 'input default' do
-    assert_kind_of Hash, input_defaults
-  end
-
   private
 
-  def pending_tickets_count # Controller method mock
-    @count
-  end
+  def pending_tickets_count; @count; end # Controller method mock
 end
