@@ -1,6 +1,6 @@
 require 'bundler/capistrano'
 
-set :whenever_command, 'bundle exec whenever --set environment=production'
+set :whenever_command, 'bundle exec whenever'
 require 'whenever/capistrano'
 
 set :sidekiq_cmd, 'bundle exec sidekiq'

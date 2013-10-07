@@ -29,6 +29,8 @@ class FeedbacksControllerTest < ActionController::TestCase
 
   test 'should create feedback' do
     Feedback::SCORES.each do |score|
+      @feedback.destroy
+
       assert_difference 'Feedback.count' do
         post :create, ticket_id: @ticket, feedback: {
           from: @feedback.from, score: score, notes: @feedback.notes
@@ -36,7 +38,7 @@ class FeedbacksControllerTest < ActionController::TestCase
       end
 
       assert_redirected_to edit_ticket_feedback_url(@ticket, assigns(:feedback))
-      @ticket.feedbacks.clear
+      assigns(:feedback).destroy
     end
   end
 

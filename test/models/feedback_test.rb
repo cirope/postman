@@ -20,4 +20,11 @@ class FeedbackTest < ActiveSupport::TestCase
     assert @feedback.invalid?
     assert_error @feedback, :score, :inclusion
   end
+
+  test 'validates unique attributes' do
+    feedback = @feedback.dup
+
+    assert feedback.invalid?
+    assert_error feedback, :from, :taken
+  end
 end
