@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     @title = t 'sessions.new.title'
-    user = User.find_by_email params[:email]
+    user = User.find_by email: params[:email]
 
     if user && user.authenticate(params[:password])
       store_auth_token user
