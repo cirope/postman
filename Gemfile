@@ -21,7 +21,8 @@ gem 'newrelic_rpm'
 gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'
-gem 'capistrano-rbenv'
+gem 'capistrano-rbenv', github: 'capistrano/rbenv'
+gem 'sshkit', github: 'leehambley/sshkit'
 
 group :doc do
   gem 'sdoc', require: false
