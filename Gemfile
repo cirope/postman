@@ -15,7 +15,7 @@ gem 'simple_form'
 gem 'whenever'
 gem 'sidekiq'
 gem 'rack-mini-profiler'
-gem 'capistrano', '~> 2.15'
+gem 'capistrano'
 gem 'roadie'
 gem 'newrelic_rpm'
 
