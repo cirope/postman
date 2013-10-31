@@ -1,4 +1,5 @@
 set :application, 'postman'
+set :user, 'deployer'
 set :repo_url, 'git://github.com/cirope/postman.git'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
@@ -41,7 +42,7 @@ namespace :deploy do
 
   # TODO: remove when whenever add support to Capistrano 3
   desc 'Update crontab with whenever'
-  after :finishing do
+  after :finishing, 'deploy:cleanup' do
     on roles(:all) do
       within release_path do
         execute :bundle, :exec, "whenever --update-crontab #{fetch(:application)}"
