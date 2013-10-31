@@ -15,9 +15,13 @@ gem 'simple_form'
 gem 'whenever'
 gem 'sidekiq'
 gem 'rack-mini-profiler'
-gem 'capistrano'
 gem 'roadie'
 gem 'newrelic_rpm'
+
+gem 'capistrano'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
+gem 'capistrano-rbenv'
 
 group :doc do
   gem 'sdoc', require: false
