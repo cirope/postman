@@ -11,14 +11,9 @@ set :scm, :git
 set :rbenv_type, :user
 set :rbenv_ruby, '2.0.0-p247'
 
-# set :format, :pretty
-# set :log_level, :debug
-# set :pty, true
-
 set :linked_files, %w{config/app_config.yml}
 set :linked_dirs, %w{log}
 
-#set :default_env, { path: '$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH' }
 set :keep_releases, 5
 
 namespace :deploy do
