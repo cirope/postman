@@ -27,6 +27,14 @@ class FeedbacksControllerTest < ActionController::TestCase
     assert_redirected_to edit_ticket_feedback_url(@ticket, @feedback)
   end
 
+  test 'should raise not found if not in from' do
+    @ticket.feedbacks.clear
+
+    assert_raise ActiveRecord::RecordNotFound do
+      get :new, from: 'no@way.com', ticket_id: @ticket
+    end
+  end
+
   test 'should create feedback' do
     Feedback::SCORES.each do |score|
       @feedback.destroy

@@ -19,7 +19,7 @@ class FeedbacksController < ApplicationController
 
   # GET /feedbacks/new
   def new
-    feedback = @ticket.feedbacks.find_by from: params[:from]
+    feedback = @ticket.feedbacks.first_from params[:from]
 
     redirect_to edit_ticket_feedback_url(@ticket, feedback) if feedback
 
@@ -66,7 +66,7 @@ class FeedbacksController < ApplicationController
   def check_email
     email = params[:id] || params[:from] || feedback_params[:from]
 
-    raise ActiveRecord::RecordNotFound unless @ticket.from.include? email
+    raise ActiveRecord::RecordNotFound unless @ticket.is_from? email
   end
 
   def feedback_params

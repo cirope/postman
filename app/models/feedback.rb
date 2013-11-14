@@ -1,4 +1,6 @@
 class Feedback < ActiveRecord::Base
+  include Feedbacks::Scopes
+
   SCORES = %w(great good poor)
 
   validates :from, :score, presence: true
