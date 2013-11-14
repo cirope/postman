@@ -27,4 +27,9 @@ class FeedbackTest < ActiveSupport::TestCase
     assert feedback.invalid?
     assert_error feedback, :from, :taken
   end
+
+  test 'first from' do
+    assert_equal @feedback, Feedback.first_from(@feedback.from.upcase)
+    assert_nil Feedback.first_from('no@way.com')
+  end
 end

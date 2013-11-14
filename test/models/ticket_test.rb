@@ -38,6 +38,11 @@ class TicketTest < ActiveSupport::TestCase
     assert_error @ticket, :from_addresses, :invalid
   end
 
+  test 'is from' do
+    assert @ticket.is_from?(@ticket.from.first.upcase)
+    assert !@ticket.is_from?('no@way.com')
+  end
+
   test 'from addresses' do
     @ticket.from_addresses = 'one@one.net, two@two.net, three@three.net'
 

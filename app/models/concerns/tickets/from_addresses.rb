@@ -1,6 +1,10 @@
 module Tickets::FromAddresses
   extend ActiveSupport::Concern
 
+  def is_from? email
+    from.any? { |f| f.downcase == email.downcase }
+  end
+
   def from_addresses
     from.join ', ' if from
   end
