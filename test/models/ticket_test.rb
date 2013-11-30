@@ -5,21 +5,21 @@ class TicketTest < ActiveSupport::TestCase
   def setup
     @ticket = tickets(:enhancement)
   end
-    
+
   test 'validates blank attributes' do
     @ticket.from_addresses = ''
     @ticket.subject = ''
     @ticket.status = nil
-    
+
     assert @ticket.invalid?
     assert_error @ticket, :from_addresses, :blank
     assert_error @ticket, :subject, :blank
     assert_error @ticket, :status, :blank
   end
-    
+
   test 'validates attribute length' do
     @ticket.subject = 'abcde' * 52
-    
+
     assert @ticket.invalid?
     assert_error @ticket, :subject, :too_long, count: 255
   end

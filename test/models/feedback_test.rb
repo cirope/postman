@@ -8,7 +8,7 @@ class FeedbackTest < ActiveSupport::TestCase
   test 'validates blank attributes' do
     @feedback.from = ''
     @feedback.score = ''
-    
+
     assert @feedback.invalid?
     assert_error @feedback, :from, :blank
     assert_error @feedback, :score, :blank

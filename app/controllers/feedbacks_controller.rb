@@ -6,7 +6,7 @@ class FeedbacksController < ApplicationController
   before_action :check_email, only: [:new, :create, :edit, :update]
   before_action :set_feedback, only:  [:show, :edit, :update, :destroy]
   before_action :set_title, only: [:show, :new, :edit]
-  
+
   # GET /feedbacks
   def index
     @title = t '.title', ticket: @ticket, tenant: @tenant

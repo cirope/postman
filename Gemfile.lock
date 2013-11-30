@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/capistrano/rbenv.git
-  revision: 29260c6cf1380323ad282434aea8089c503e6e33
+  revision: d2f83117c2d035bc9504ed4550d4ea0d229db87c
   specs:
     capistrano-rbenv (0.1.0)
       capistrano (~> 3.0)
@@ -42,7 +42,7 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 0.0.23)
-    capistrano-bundler (1.1.0)
+    capistrano-bundler (1.1.1)
       capistrano (~> 3.0)
       sshkit (>= 1.2.0)
     capistrano-rails (1.1.0)
@@ -144,7 +144,7 @@ GEM
       json
       redis (>= 3.0.4)
       redis-namespace (>= 1.3.1)
-    simple_form (3.0.0)
+    simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
     sprockets (2.10.1)

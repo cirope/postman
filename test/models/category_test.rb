@@ -7,7 +7,7 @@ class CategoryTest < ActiveSupport::TestCase
 
   test 'validates blank attributes' do
     @category.name = ''
-    
+
     assert @category.invalid?
     assert_error @category, :name, :blank
   end

@@ -16,7 +16,7 @@ class ResponseMailerTest < ActionMailer::TestCase
   test 'reply with feedback' do
     ticket = tickets(:enhancement)
     tenant = ticket.tenant
-    
+
     ticket.update_attributes! feedback_requested: true
     ticket.feedbacks.clear
 

@@ -5,11 +5,11 @@ class TicketsController < ApplicationController
   before_action :authorize, :set_tenant
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
   before_action :set_title, only: [:show, :new, :edit]
-  
+
   # GET /tickets
   def index
     @title = t '.title', owner: (@tenant || current_user)
-    
+
     @tenant ? set_tickets_with_tenant : set_tickets_data
   end
 
