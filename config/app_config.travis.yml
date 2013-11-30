@@ -6,6 +6,6 @@ smtp:
   password: '<password>'
   authentication: 'plain'
   enable_starttls_auto: true
-  
+
 host: 'localhost'
 email: 'noreply@change.me'
