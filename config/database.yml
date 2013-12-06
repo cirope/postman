@@ -16,3 +16,7 @@ test:
 production:
   database: postman_production
   <<: *common
+
+sandbox:
+  database: postman_production
+  <<: *common
