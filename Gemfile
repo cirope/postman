@@ -23,7 +23,7 @@ gem 'unicorn-rails'
 gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'
-gem 'capistrano-rbenv', github: 'capistrano/rbenv'
+gem 'capistrano-rbenv'
 
 group :doc do
   gem 'sdoc', require: false
