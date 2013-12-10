@@ -7,5 +7,5 @@ end
 remote_file 'config/app_config.yml' => 'config/app_config.example.yml', roles: :app
 
 file 'config/app_config.example.yml' do |t|
-  File.read release_path.join('config/app_config.example.yml')
+  File.read release_path.join(t.name)
 end
