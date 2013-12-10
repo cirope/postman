@@ -1,0 +1,11 @@
+namespace :deploy do
+  namespace :check do
+    task linked_files: 'config/app_config.yml'
+  end
+end
+
+remote_file 'config/app_config.yml' => 'config/app_config.example.yml', roles: :app
+
+file 'config/app_config.example.yml' do |t|
+  File.read release_path.join('config/app_config.example.yml')
+end
