@@ -18,12 +18,14 @@ gem 'roadie'
 gem 'newrelic_rpm'
 
 gem 'unicorn'
-gem 'unicorn-rails'
 
-gem 'capistrano'
-gem 'capistrano-bundler'
-gem 'capistrano-rails'
-gem 'capistrano-rbenv'
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv', '~> 2.0'
+  gem 'unicorn-rails'
+end
 
 group :doc do
   gem 'sdoc', require: false
