@@ -20,8 +20,8 @@ namespace :email do
     Mail.defaults do
       retriever_method :pop3, address:    'pop.gmail.com',
                               port:       995,
-                              user_name:  APP_CONFIG['smtp']['user_name'],
-                              password:   APP_CONFIG['smtp']['password'],
+                              user_name:  APPLICATION['smtp']['user_name'],
+                              password:   APPLICATION['smtp']['password'],
                               enable_ssl: true
     end
   end
