@@ -10,7 +10,18 @@ class ActionDispatch::IntegrationTest
     Capybara.default_driver = :poltergeist
   end
 
+  teardown do
+    DatabaseCleaner.clean
+    Capybara.reset_sessions!
+    Capybara.use_default_driver
+  end
+
   def login user = users(:franco)
-    page.driver.set_cookie 'auth_token', user.auth_token
+    visit login_path
+
+    fill_in 'email', with: user.email
+    fill_in 'password', with: '123'
+
+    click_button I18n.t('sessions.new.log_in')
   end
 end

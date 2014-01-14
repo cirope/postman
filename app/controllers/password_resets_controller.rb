@@ -5,7 +5,7 @@ class PasswordResetsController < ApplicationController
 
   def create
     @title = t 'password_resets.new.title'
-    user = User.find_by(email: params[:email])
+    user = User.find_by email: params[:email]
 
     if user
       user.prepare_password_reset
