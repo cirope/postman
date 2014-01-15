@@ -49,6 +49,7 @@ class TicketsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to ticket_url(assigns(:ticket))
+    assert_not_nil assigns(:ticket).reload.sent_at
   end
 
   test 'should show ticket' do

@@ -32,7 +32,7 @@ class TicketsController < ApplicationController
     @title = t 'tickets.new.title'
     @ticket = @tenant.tickets.new ticket_params
 
-    create_and_respond { send_emails @ticket.body }
+    create_and_respond { send_emails @ticket.message }
   end
 
   # PATCH /tickets/1

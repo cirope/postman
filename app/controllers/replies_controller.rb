@@ -33,7 +33,7 @@ class RepliesController < ApplicationController
 
     @ticket.update! feedback_requested: true if params[:feedback_requested]
 
-    create_and_respond { send_emails @reply.body }
+    create_and_respond { send_emails @reply.message }
   end
 
   # PUT/PATCH /replies/1

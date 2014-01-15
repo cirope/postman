@@ -27,6 +27,7 @@ class RepliesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to @ticket
+    assert_not_nil assigns(:reply).reload.sent_at
     assert !@ticket.reload.feedback_requested
   end
 
@@ -39,6 +40,7 @@ class RepliesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to @ticket
+    assert_not_nil assigns(:reply).reload.sent_at
     assert @ticket.reload.feedback_requested
   end
 
