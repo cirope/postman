@@ -3,7 +3,7 @@ module Tickets::Email
 
   def send_emails body
     @ticket.from.each do |email|
-      ResponseMailer.delay.reply to: email, ticket: @ticket, body: body
+      DeliveryWorker.perform_async email, @ticket.id, body
     end
   end
 end
