@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115002509) do
+ActiveRecord::Schema.define(version: 20140115023101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20140115002509) do
   add_index "messages", ["owner_id", "owner_type"], name: "index_messages_on_owner_id_and_owner_type", using: :btree
 
   create_table "replies", force: true do |t|
-    t.text     "body"
     t.integer  "ticket_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -70,7 +69,6 @@ ActiveRecord::Schema.define(version: 20140115002509) do
     t.string   "from",                               null: false, array: true
     t.string   "subject",                            null: false
     t.string   "status",                             null: false
-    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tenant_id",                          null: false
