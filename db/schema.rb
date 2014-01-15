@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20140115002509) do
   add_index "feedbacks", ["ticket_id"], name: "index_feedbacks_on_ticket_id", using: :btree
 
   create_table "messages", force: true do |t|
-    t.text     "body",       null: false
+    t.text     "body",       default: "", null: false
     t.datetime "sent_at"
     t.integer  "owner_id"
     t.string   "owner_type"

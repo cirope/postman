@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-  validates :body, :owner, presence: true
+  validates :owner, presence: true
 
   belongs_to :owner, polymorphic: true
 
