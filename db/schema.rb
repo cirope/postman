@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20140115002509) do
     t.datetime "updated_at"
   end
 
+  add_index "messages", ["owner_id", "owner_type"], name: "index_messages_on_owner_id_and_owner_type", using: :btree
+
   create_table "replies", force: true do |t|
     t.text     "body"
     t.integer  "ticket_id",  null: false

@@ -3,7 +3,7 @@ class CreateMessages < ActiveRecord::Migration
     create_table :messages do |t|
       t.text :body, null: false
       t.datetime :sent_at
-      t.references :owner, polymorphic: true
+      t.references :owner, polymorphic: true, index: true
 
       t.timestamps
     end
