@@ -6,7 +6,7 @@ module Tickets::Replies
   end
 
   def create_reply body
-    replies.build body: body
+    replies.build body: body, sent_at: Time.now
     reopen
 
     save!
