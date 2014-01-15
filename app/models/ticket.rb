@@ -1,4 +1,5 @@
 class Ticket < ActiveRecord::Base
+  include MessageOwner
   include Tickets::Feedback
   include Tickets::FromAddresses
   include Tickets::MessageProcess

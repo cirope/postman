@@ -1,5 +1,5 @@
 class Reply < ActiveRecord::Base
-  validates :body, presence: true
+  include MessageOwner
 
   belongs_to :ticket
 
