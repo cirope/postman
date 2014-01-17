@@ -2,7 +2,7 @@ class TenantsController < ApplicationController
   include Responder
 
   before_action :authorize
-  before_action :set_tenant, only:  [:show, :edit, :update, :destroy]
+  before_action :set_tenant, only: [:show, :edit, :update, :destroy]
   before_action :set_title, only: [:index, :show, :new, :edit]
 
   # GET /tenants

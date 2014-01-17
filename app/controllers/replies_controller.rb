@@ -4,7 +4,7 @@ class RepliesController < ApplicationController
 
   before_action :authorize
   before_action :set_ticket
-  before_action :set_reply, only:  [:show, :edit, :update, :destroy]
+  before_action :set_reply, only: [:show, :edit, :update, :destroy]
   before_action :set_title, only: [:show, :new, :edit]
 
   # GET /replies
