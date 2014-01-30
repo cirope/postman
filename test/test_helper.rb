@@ -18,6 +18,6 @@ class ActiveSupport::TestCase
 end
 
 # Custom extensions
-require_relative 'extensions/integration_test'
-require_relative 'extensions/action_controller_test'
-require_relative 'extensions/active_record'
+require_relative 'support/integration_test'
+require_relative 'support/action_controller_test'
+require_relative 'support/shared_db_connection'

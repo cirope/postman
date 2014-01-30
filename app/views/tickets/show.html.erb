@@ -29,7 +29,7 @@
 
 <blockquote>
   <%= simple_format @ticket.body %>
-  <small><%= l @ticket.created_at %> <%= show_sent_at @ticket %></small>
+  <footer><%= l @ticket.created_at %> <%= show_sent_at @ticket %></footer>
 </blockquote>
 
 <%= render @ticket.replies.reject(&:new_record?) %>
