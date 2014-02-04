@@ -87,6 +87,12 @@ class TicketTest < ActiveSupport::TestCase
     assert_nil @ticket.user
   end
 
+  test 'receive new cc message' do
+    assert_difference 'Ticket.count' do
+      Ticket.receive_mail mail(cc: true)
+    end
+  end
+
   test 'ask for feedback' do
     assert !@ticket.ask_for_feedback?(@ticket.from.first)
 
@@ -114,8 +120,8 @@ class TicketTest < ActiveSupport::TestCase
 
   private
 
-  def mail with_id: false
-    mail = create_mail with_id: with_id
+  def mail with_id: false, cc: false
+    mail = create_mail with_id: with_id, cc: cc
     mail.body = "Some\nbody =)"
 
     mail
@@ -136,13 +142,14 @@ class TicketTest < ActiveSupport::TestCase
     mail
   end
 
-  def create_mail with_id: false
+  def create_mail with_id: false, cc: false
     _subject =  "Test email"
     _subject << " [##{@ticket.id}]" if with_id
 
     Mail.new do
       from    'nobody@test.net'
-      to      'support@postman.com'
+      to      'support@postman.com' unless cc
+      cc      'support@postman.com' if cc
       subject _subject
     end
   end

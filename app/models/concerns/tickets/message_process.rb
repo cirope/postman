@@ -24,8 +24,12 @@ module Tickets::MessageProcess
       end
     end
 
+    def recipients message
+      message.to.to_a + message.cc.to_a
+    end
+
     def extract_tenants message
-      message.to.map { |e| Tenant.find_by email: e }.compact
+      recipients(message).map { |e| Tenant.find_by email: e }.compact
     end
 
     def extract_ticket_id message
