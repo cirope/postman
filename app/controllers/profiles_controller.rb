@@ -15,19 +15,19 @@ class ProfilesController < ApplicationController
 
   private
 
-  def set_user
-    @user = current_user
-  end
+    def set_user
+      @user = current_user
+    end
 
-  def user_params
-    params.require(:user).permit(:name, :lastname, :email, :password, :password_confirmation)
-  end
-  alias_method :resource_params, :user_params
+    def user_params
+      params.require(:user).permit :name, :lastname, :email, :password, :password_confirmation, :lock_version
+    end
+    alias_method :resource_params, :user_params
 
-  def resource
-    @user
-  end
+    def resource
+      @user
+    end
 
-  def after_update_url; root_url; end
-  def edit_resource_url; profile_url; end
+    def after_update_url; root_url; end
+    def edit_resource_url; profile_url; end
 end
