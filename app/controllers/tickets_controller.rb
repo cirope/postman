@@ -72,12 +72,6 @@ class TicketsController < ApplicationController
   def resource
     @ticket
   end
-  alias_method :after_create_url, :resource
-  alias_method :after_update_url, :resource
-
-  def edit_resource_url
-    edit_ticket_url @ticket
-  end
 
   def after_destroy_url
     tenant_tickets_url @tenant

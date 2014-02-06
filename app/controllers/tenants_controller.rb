@@ -61,12 +61,4 @@ class TenantsController < ApplicationController
   def resource
     @tenant
   end
-  alias_method :after_create_url, :resource
-  alias_method :after_update_url, :resource
-
-  def edit_resource_url
-    edit_tenant_url @tenant
-  end
-
-  def after_destroy_url; tenants_url; end
 end
