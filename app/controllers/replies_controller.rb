@@ -1,6 +1,7 @@
 class RepliesController < ApplicationController
-  include Responder
   include Tickets::Email
+
+  respond_to :html, :json
 
   before_action :authorize
   before_action :set_ticket
@@ -11,15 +12,19 @@ class RepliesController < ApplicationController
   def index
     @title = t '.title', ticket: @ticket
     @replies = @ticket.replies
+
+    respond_with @ticket, @replies
   end
 
   # GET /replies/1
   def show
+    respond_with @ticket, @reply
   end
 
   # GET /replies/new
   def new
     @reply = @ticket.replies.new
+    respond_with @ticket, @reply
   end
 
   # GET /replies/1/edit
@@ -33,19 +38,23 @@ class RepliesController < ApplicationController
 
     @ticket.update! feedback_requested: true if params[:feedback_requested]
 
-    create_and_respond { send_emails @reply.message }
+    send_emails @reply.message if @reply.save
+
+    respond_with @ticket, @reply, location: @ticket
   end
 
   # PUT/PATCH /replies/1
   def update
     @title = t 'replies.edit.title'
 
-    update_and_respond
+    @reply.update reply_params
+    respond_with @ticket, @reply, location: @ticket
   end
 
   # DELETE /replies/1
   def destroy
-    destroy_and_respond
+    @reply.destroy
+    respond_with @ticket, @reply, location: @ticket
   end
 
   private
@@ -65,19 +74,4 @@ class RepliesController < ApplicationController
   def reply_params
     params.require(:reply).permit(:body)
   end
-  alias_method :resource_params, :reply_params
-
-  def resource
-    @reply
-  end
-
-  def edit_resource_url
-    edit_ticket_reply_url @ticket, @reply
-  end
-
-  def after_create_url
-    @ticket
-  end
-  alias_method :after_update_url, :after_create_url
-  alias_method :after_destroy_url, :after_create_url
 end

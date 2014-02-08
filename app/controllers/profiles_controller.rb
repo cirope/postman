@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  include Responder
+  respond_to :html, :json
 
   before_action :authorize, :set_user
 
@@ -10,7 +10,8 @@ class ProfilesController < ApplicationController
   def update
     @title = t 'profiles.edit.title'
 
-    update_and_respond
+    @user.update user_params
+    respond_with @user, location: root_url
   end
 
   private
@@ -22,12 +23,4 @@ class ProfilesController < ApplicationController
     def user_params
       params.require(:user).permit :name, :lastname, :email, :password, :password_confirmation, :lock_version
     end
-    alias_method :resource_params, :user_params
-
-    def resource
-      @user
-    end
-
-    def after_update_url; root_url; end
-    def edit_resource_url; profile_url; end
 end

@@ -1,5 +1,5 @@
 class TenantsController < ApplicationController
-  include Responder
+  respond_to :html, :json
 
   before_action :authorize
   before_action :set_tenant, only: [:show, :edit, :update, :destroy]
@@ -8,15 +8,19 @@ class TenantsController < ApplicationController
   # GET /tenants
   def index
     @tenants = Tenant.all
+
+    respond_with @tenants
   end
 
   # GET /tenants/1
   def show
+    respond_with @tenant
   end
 
   # GET /tenants/new
   def new
     @tenant = Tenant.new
+    respond_with @tenant
   end
 
   # GET /tenants/1/edit
@@ -28,19 +32,22 @@ class TenantsController < ApplicationController
     @title = t 'tenants.new.title'
     @tenant = Tenant.new tenant_params
 
-    create_and_respond
+    @tenant.save
+    respond_with @tenant
   end
 
   # PATCH /tenants/1
   def update
     @title = t 'tenants.edit.title'
 
-    update_and_respond
+    @tenant.update tenant_params
+    respond_with @tenant
   end
 
   # DELETE /tenants/1
   def destroy
-    destroy_and_respond
+    @tenant.destroy
+    respond_with @tenant
   end
 
   private
@@ -54,11 +61,6 @@ class TenantsController < ApplicationController
   end
 
   def tenant_params
-    params.require(:tenant).permit(:name, :email, :subdomain)
-  end
-  alias_method :resource_params, :tenant_params
-
-  def resource
-    @tenant
+    params.require(:tenant).permit :name, :email, :subdomain
   end
 end

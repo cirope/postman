@@ -1,5 +1,5 @@
 class FeedbacksController < ApplicationController
-  include Responder
+  respond_to :html, :json
 
   before_action :authorize, only: [:index, :show]
   before_action :set_ticket, :set_tenant
@@ -11,19 +11,26 @@ class FeedbacksController < ApplicationController
   def index
     @title = t '.title', ticket: @ticket, tenant: @tenant
     @feedbacks = @ticket.feedbacks
+
+    respond_with @ticket, @feedbacks
   end
 
   # GET /feedbacks/1
   def show
+    respond_with @ticket, @feedback
   end
 
   # GET /feedbacks/new
   def new
-    feedback = @ticket.feedbacks.first_from params[:from]
+    @feedback = @ticket.feedbacks.first_from params[:from]
 
-    redirect_to edit_ticket_feedback_url(@ticket, feedback) if feedback
+    if @feedback
+      redirect_to edit_ticket_url
+    else
+      @feedback = @ticket.feedbacks.new from: params[:from]
 
-    @feedback = @ticket.feedbacks.new from: params[:from]
+      respond_with @ticket, @feedback
+    end
   end
 
   # GET /feedbacks/1/edit
@@ -35,14 +42,16 @@ class FeedbacksController < ApplicationController
     @title = t 'feedbacks.new.title'
     @feedback = @ticket.feedbacks.new feedback_params
 
-    create_and_respond
+    @feedback.save
+    respond_with @ticket, @feedback, location: edit_ticket_url
   end
 
   # PUT/PATCH /feedbacks/1
   def update
     @title = t 'feedbacks.edit.title'
 
-    update_and_respond
+    @feedback.update feedback_params
+    respond_with @ticket, @feedback, location: edit_ticket_url
   end
 
   private
@@ -70,17 +79,10 @@ class FeedbacksController < ApplicationController
   end
 
   def feedback_params
-    params.require(:feedback).permit(:from, :score, :notes)
-  end
-  alias_method :resource_params, :feedback_params
-
-  def resource
-    @feedback
+    params.require(:feedback).permit :from, :score, :notes
   end
 
-  def after_create_url
+  def edit_ticket_url
     edit_ticket_feedback_url @ticket, @feedback
   end
-  alias_method :after_update_url, :after_create_url
-  alias_method :edit_resource_url, :after_create_url
 end

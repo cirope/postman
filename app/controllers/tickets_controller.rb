@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
-  include Responder
   include Tickets::Email
+
+  respond_to :html, :json, :js
 
   before_action :authorize, :set_tenant
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
@@ -11,16 +12,20 @@ class TicketsController < ApplicationController
     @title = t '.title', owner: (@tenant || current_user)
 
     @tenant ? set_tickets_with_tenant : set_tickets_data
+
+    respond_with *[@tenant, @tickets].compact
   end
 
   # GET /tickets/1
   def show
     @reply = @ticket.replies.new
+    respond_with @ticket
   end
 
   # GET /tickets/new
   def new
     @ticket = @tenant.tickets.new
+    respond_with @ticket
   end
 
   # GET /tickets/1/edit
@@ -32,19 +37,22 @@ class TicketsController < ApplicationController
     @title = t 'tickets.new.title'
     @ticket = @tenant.tickets.new ticket_params
 
-    create_and_respond { send_emails @ticket.message }
+    send_emails @ticket.message if @ticket.save
+    respond_with @ticket
   end
 
   # PATCH /tickets/1
   def update
     @title = t 'tickets.edit.title'
 
-    update_and_respond
+    @ticket.update ticket_params
+    respond_with @ticket
   end
 
   # DELETE /tickets/1
   def destroy
-    destroy_and_respond
+    @ticket.destroy
+    respond_with @ticket, location: tenant_tickets_url(@tenant)
   end
 
   private
@@ -66,15 +74,6 @@ class TicketsController < ApplicationController
     params.require(:ticket).permit(
       :from_addresses, :subject, :status, :feedback_requested, :category_id, :user_id, :body
     )
-  end
-  alias_method :resource_params, :ticket_params
-
-  def resource
-    @ticket
-  end
-
-  def after_destroy_url
-    tenant_tickets_url @tenant
   end
 
   def set_tickets_with_tenant
