@@ -46,6 +46,9 @@ class RepliesController < ApplicationController
   def update
     @reply.update reply_params
     respond_with @ticket, @reply, location: @ticket
+
+  rescue ActiveRecord::StaleObjectError
+    redirect_to [:edit, @ticket, @reply], alert: t('.stale')
   end
 
   # DELETE /replies/1

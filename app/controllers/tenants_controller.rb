@@ -39,6 +39,9 @@ class TenantsController < ApplicationController
   def update
     @tenant.update tenant_params
     respond_with @tenant
+
+  rescue ActiveRecord::StaleObjectError
+    redirect_to [:edit, @tenant], alert: t('.stale')
   end
 
   # DELETE /tenants/1

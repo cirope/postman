@@ -27,7 +27,7 @@ es:
 
   feedbacks:
     create:
-      success: ''
+      notice: ''
     edit:
       title: 'Editar calificación'
       submit: 'Enviar comentarios'
@@ -41,8 +41,8 @@ es:
     show:
       title: 'Ver calificación'
     update:
-      success: ''
-      stale_object_error: 'No se pudo actualizar la calificación, revise los datos e inténtelo nuevamente'
+      notice: ''
+      stale: 'No se pudo actualizar la calificación, revise los datos e inténtelo nuevamente'
     scores:
       great: 'Excelente'
       good: 'Bueno'
@@ -87,9 +87,9 @@ es:
 
   replies:
     create:
-      success: 'Respuesta creada correctamente'
+      notice: 'Respuesta creada correctamente'
     destroy:
-      success: 'Respuesta eliminada'
+      notice: 'Respuesta eliminada'
     edit:
       title: 'Editar respuesta'
     index:
@@ -102,15 +102,15 @@ es:
     show:
       title: 'Ver respuesta'
     update:
-      success: 'Respuesta actualizada correctamente'
-      stale_object_error: 'No se pudo actualizar la respuesta, revise los datos e inténtelo nuevamente'
+      notice: 'Respuesta actualizada correctamente'
+      stale: 'No se pudo actualizar la respuesta, revise los datos e inténtelo nuevamente'
 
   tenants:
     show_tickets: 'Ver casos'
     create:
-      success: 'Aplicación creada correctamente'
+      notice: 'Aplicación creada correctamente'
     destroy:
-      success: 'Aplicación eliminada'
+      notice: 'Aplicación eliminada'
     edit:
       title: 'Editar aplicación'
     index:
@@ -122,14 +122,10 @@ es:
     show:
       title: 'Ver aplicación'
     update:
-      success: 'Aplicación actualizada correctamente'
-      stale_object_error: 'No se pudo actualizar la aplicación, revise los datos e inténtelo nuevamente'
+      notice: 'Aplicación actualizada correctamente'
+      stale: 'No se pudo actualizar la aplicación, revise los datos e inténtelo nuevamente'
 
   tickets:
-    create:
-      success: 'Caso creado correctamente'
-    destroy:
-      success: 'Caso eliminado'
     edit:
       title: 'Editar caso'
     index:
@@ -144,8 +140,7 @@ es:
     show:
       title: 'Ver caso'
     update:
-      success: 'Caso actualizado correctamente'
-      stale_object_error: 'No se pudo actualizar el caso, revise los datos e inténtelo nuevamente'
+      stale: 'No se pudo actualizar el caso, revise los datos e inténtelo nuevamente'
     status:
       open: 'Abierto'
       closed: 'Cerrado'

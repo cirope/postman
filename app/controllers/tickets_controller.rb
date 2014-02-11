@@ -44,6 +44,9 @@ class TicketsController < ApplicationController
   def update
     @ticket.update ticket_params
     respond_with @ticket
+
+  rescue ActiveRecord::StaleObjectError
+    redirect_to [:edit, @ticket], alert: t('.stale')
   end
 
   # DELETE /tickets/1

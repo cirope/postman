@@ -49,6 +49,9 @@ class FeedbacksController < ApplicationController
   def update
     @feedback.update feedback_params
     respond_with @ticket, @feedback, location: edit_ticket_url
+
+  rescue ActiveRecord::StaleObjectError
+    redirect_to [:edit, @ticket, @feedback], alert: t('.stale')
   end
 
   private
