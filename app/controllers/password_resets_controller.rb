@@ -1,10 +1,11 @@
 class PasswordResetsController < ApplicationController
+  before_action :set_user, only: [:edit, :update]
+  before_action :set_title
+
   def new
-    @title = t '.title'
   end
 
   def create
-    @title = t 'password_resets.new.title'
     user = User.find_by email: params[:email]
 
     if user
@@ -19,15 +20,10 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit
-    @title = t '.title'
-    @user = User.find_by! password_reset_token: params[:id]
   end
 
   def update
-    @title = t 'password_resets.edit.title'
-    @user = User.find_by! password_reset_token: params[:id]
-
-    if @user.password_reset_sent_at < 2.hours.ago
+    if @user.password_expired?
       redirect_to new_password_reset_path, alert: t('.expired')
     elsif @user.update(user_params)
       redirect_to root_url, notice: t('.success')
@@ -38,7 +34,11 @@ class PasswordResetsController < ApplicationController
 
   private
 
+    def set_user
+      @user = User.find_by! password_reset_token: params[:id]
+    end
+
     def user_params
-      params.require(:user).permit(:password, :password_confirmation)
+      params.require(:user).permit :password, :password_confirmation
     end
 end
