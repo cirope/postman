@@ -29,6 +29,7 @@ es:
     profiles:
       update:
         notice: 'Tus datos se actualizaron correctamente'
+        stale: 'No pudimos actualizar los datos, revise e inténtelo nuevamente'
 
     replies:
       create:
