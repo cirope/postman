@@ -51,7 +51,7 @@ class FeedbacksController < ApplicationController
     respond_with @ticket, @feedback, location: edit_ticket_url
 
   rescue ActiveRecord::StaleObjectError
-    redirect_to [:edit, @ticket, @feedback], alert: t('.stale')
+    redirect_to [:edit, @ticket, @feedback], alert: t('.stale', scope: :flash)
   end
 
   private

@@ -41,7 +41,7 @@ class TenantsController < ApplicationController
     respond_with @tenant
 
   rescue ActiveRecord::StaleObjectError
-    redirect_to [:edit, @tenant], alert: t('.stale')
+    redirect_to [:edit, @tenant], alert: t('.stale', scope: :flash)
   end
 
   # DELETE /tenants/1

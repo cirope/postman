@@ -11,6 +11,13 @@ es:
         notice: '%{resource_name} eliminado'
         alert:  '%{resource_name} no pudo ser eliminado'
 
+    feedbacks:
+      create:
+        notice: ''
+      update:
+        notice: ''
+        stale: 'No se pudo actualizar la calificación, revise los datos e inténtelo nuevamente'
+
     password_resets:
       update:
         notice: 'Contraseña cambiada correctamente'
@@ -23,9 +30,35 @@ es:
       update:
         notice: 'Tus datos se actualizaron correctamente'
 
+    replies:
+      create:
+        notice: 'Respuesta creada correctamente'
+      destroy:
+        notice: 'Respuesta eliminada'
+      update:
+        notice: 'Respuesta actualizada correctamente'
+        stale: 'No se pudo actualizar la respuesta, revise los datos e inténtelo nuevamente'
+
     sessions:
       create:
         invalid: 'Tu correo y/o contraseña no están bien =('
         logged_in: 'Bienvenido'
       destroy:
         logged_out: 'Hasta la próxima'
+
+    tenants:
+      create:
+        notice: 'Aplicación creada correctamente'
+      destroy:
+        notice: 'Aplicación eliminada'
+      update:
+        notice: 'Aplicación actualizada correctamente'
+        stale: 'No se pudo actualizar la aplicación, revise los datos e inténtelo nuevamente'
+
+    tickets:
+      update:
+        stale: 'No se pudo actualizar el caso, revise los datos e inténtelo nuevamente'
+
+    users:
+      update:
+        stale: 'No se pudo actualizar el usuario, revise los datos e inténtelo nuevamente'

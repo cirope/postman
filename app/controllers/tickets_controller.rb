@@ -46,7 +46,7 @@ class TicketsController < ApplicationController
     respond_with @ticket
 
   rescue ActiveRecord::StaleObjectError
-    redirect_to [:edit, @ticket], alert: t('.stale')
+    redirect_to [:edit, @ticket], alert: t('.stale', scope: :flash)
   end
 
   # DELETE /tickets/1

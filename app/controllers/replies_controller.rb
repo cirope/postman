@@ -48,7 +48,7 @@ class RepliesController < ApplicationController
     respond_with @ticket, @reply, location: @ticket
 
   rescue ActiveRecord::StaleObjectError
-    redirect_to [:edit, @ticket, @reply], alert: t('.stale')
+    redirect_to [:edit, @ticket, @reply], alert: t('.stale', scope: :flash)
   end
 
   # DELETE /replies/1
