@@ -42,11 +42,8 @@ class TicketsController < ApplicationController
 
   # PATCH /tickets/1
   def update
-    @ticket.update ticket_params
+    update_resource @ticket, ticket_params
     respond_with @ticket
-
-  rescue ActiveRecord::StaleObjectError
-    redirect_to [:edit, @ticket], alert: t('.stale', scope: :flash)
   end
 
   # DELETE /tickets/1

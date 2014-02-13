@@ -44,11 +44,8 @@ class RepliesController < ApplicationController
 
   # PUT/PATCH /replies/1
   def update
-    @reply.update reply_params
+    update_resource @reply, reply_params, stale_location: [:edit, @ticket, @reply]
     respond_with @ticket, @reply, location: @ticket
-
-  rescue ActiveRecord::StaleObjectError
-    redirect_to [:edit, @ticket, @reply], alert: t('.stale', scope: :flash)
   end
 
   # DELETE /replies/1

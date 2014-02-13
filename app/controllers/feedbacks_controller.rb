@@ -47,11 +47,8 @@ class FeedbacksController < ApplicationController
 
   # PUT/PATCH /feedbacks/1
   def update
-    @feedback.update feedback_params
+    update_resource @feedback, feedback_params, stale_location: [:edit, @ticket, @feedback]
     respond_with @ticket, @feedback, location: edit_ticket_url
-
-  rescue ActiveRecord::StaleObjectError
-    redirect_to [:edit, @ticket, @feedback], alert: t('.stale', scope: :flash)
   end
 
   private

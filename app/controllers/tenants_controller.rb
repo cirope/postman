@@ -37,11 +37,8 @@ class TenantsController < ApplicationController
 
   # PATCH /tenants/1
   def update
-    @tenant.update tenant_params
+    update_resource @tenant, tenant_params
     respond_with @tenant
-
-  rescue ActiveRecord::StaleObjectError
-    redirect_to [:edit, @tenant], alert: t('.stale', scope: :flash)
   end
 
   # DELETE /tenants/1
