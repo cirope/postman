@@ -24,7 +24,7 @@ class TicketsControllerTest < ActionController::TestCase
   end
 
   test 'should get index for current user in js' do
-    get :index, format: :js
+    xhr :get, :index, format: :js
     assert_response :success
     assert_not_nil assigns(:tickets_count)
     assert_equal Mime::JS, response.content_type

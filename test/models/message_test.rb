@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MessageTest < ActiveSupport::TestCase
   def setup
-    @message = messages :enhancement
+    @message = messages :enhancement_msg
   end
 
   test 'blank attributes' do

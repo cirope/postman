@@ -4,10 +4,10 @@ module MessageOwner
   included do
     has_one :message, as: :owner
 
-    delegate :body, :body=, :sent_at, :sent_at=, to: :message
+    delegate :body, :body=, :sent_at, :sent_at=, to: :_message
   end
 
-  def message
-    super || build_message
+  def _message
+    message || build_message
   end
 end

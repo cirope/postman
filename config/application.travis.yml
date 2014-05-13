@@ -1,11 +1,16 @@
-smtp:
-  address: 'smtp.gmail.com'
-  port: 587
-  domain: 'gmail.com'
-  user_name: 'username@change.me'
-  password: '<password>'
-  authentication: 'plain'
-  enable_starttls_auto: true
+SMTP_ADDRESS: 'smtp.gmail.com'
+SMTP_PORT: 587
+SMTP_DOMAIN: 'gmail.com'
+SMTP_USER_NAME: 'username@change.me'
+SMTP_PASSWORD: '<password>'
+SMTP_AUTHENTICATION: 'plain'
+SMTP_ENABLE_STARTTLS_AUTO: True
 
-host: 'localhost'
-email: 'noreply@change.me'
+APP_HOST: 'localhost:3000'
+APP_PROTOCOL: 'http'
+EMAIL_ADDRESS: 'noreply@change.me'
+
+SECRET_KEY_BASE: '1fc12eb36774f4041c5f067d285f0cb14f25bd20e20bb4ff1cbcfdc413fc8a94458d1e86cf2f53c436e8fb89634951ba03f30603561c5dcd5247aec825012efd'
+
+production:
+  APP_PROTOCOL: 'https'

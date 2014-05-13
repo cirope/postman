@@ -1,6 +1,6 @@
 class ResponseMailer < ActionMailer::Base
   layout 'mailer'
-  default from: "'#{I18n.t('app_name')}' <#{APPLICATION['email']}>"
+  default from: "'#{I18n.t('app_name')}' <#{ENV['EMAIL_ADDRESS']}>"
 
   def reply to: nil, ticket: nil, body: nil
     @ticket, @body, @to = ticket, body, to

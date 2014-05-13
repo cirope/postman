@@ -1,4 +1,4 @@
-Postman::Application.routes.draw do
+Rails.application.routes.draw do
   # Sessions
   get    'login',    to: 'sessions#new',     as: 'login'
   post   'sessions', to: 'sessions#create',  as: 'sessions'

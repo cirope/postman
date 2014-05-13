@@ -1,9 +1,9 @@
-enhancement:
+enhancement_msg:
   body: 'This should be a great feature proposal =)'
   sent_at: <%= 1.hour.ago.to_s :db %>
   owner: enhancement (Ticket)
 
-acknowledge:
+acknowledge_msg:
   body: 'OK, we will do it'
   sent_at: <%= 1.hour.ago.to_s :db %>
   owner: acknowledge (Reply)
