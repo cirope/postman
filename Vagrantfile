@@ -1,7 +1,7 @@
 VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure VAGRANTFILE_API_VERSION do |config|
-  config.vm.host_name = 'librujo.com'
+  config.vm.hostname = 'librujo.com'
 
   config.vm.box = 'vogtmann/debian-7.5-64'
   config.vm.provision :shell, path: 'puppet/tools/install.sh'
