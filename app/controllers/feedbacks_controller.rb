@@ -11,13 +11,10 @@ class FeedbacksController < ApplicationController
   def index
     @title = t '.title', ticket: @ticket, tenant: @tenant
     @feedbacks = @ticket.feedbacks
-
-    respond_with @ticket, @feedbacks
   end
 
   # GET /feedbacks/1
   def show
-    respond_with @ticket, @feedback
   end
 
   # GET /feedbacks/new
@@ -28,8 +25,6 @@ class FeedbacksController < ApplicationController
       redirect_to edit_ticket_url
     else
       @feedback = @ticket.feedbacks.new from: params[:from]
-
-      respond_with @ticket, @feedback
     end
   end
 

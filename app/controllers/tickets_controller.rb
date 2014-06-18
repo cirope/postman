@@ -12,20 +12,16 @@ class TicketsController < ApplicationController
     @title = t '.title', owner: (@tenant || current_user)
 
     @tenant ? set_tickets_with_tenant : set_tickets_data
-
-    respond_with *[@tenant, @tickets].compact
   end
 
   # GET /tickets/1
   def show
     @reply = @ticket.replies.new
-    respond_with @ticket
   end
 
   # GET /tickets/new
   def new
     @ticket = @tenant.tickets.new
-    respond_with @ticket
   end
 
   # GET /tickets/1/edit

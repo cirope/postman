@@ -12,19 +12,15 @@ class RepliesController < ApplicationController
   def index
     @title = t '.title', ticket: @ticket
     @replies = @ticket.replies
-
-    respond_with @ticket, @replies
   end
 
   # GET /replies/1
   def show
-    respond_with @ticket, @reply
   end
 
   # GET /replies/new
   def new
     @reply = @ticket.replies.new
-    respond_with @ticket, @reply
   end
 
   # GET /replies/1/edit

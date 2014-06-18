@@ -8,19 +8,15 @@ class TenantsController < ApplicationController
   # GET /tenants
   def index
     @tenants = Tenant.all
-
-    respond_with @tenants
   end
 
   # GET /tenants/1
   def show
-    respond_with @tenant
   end
 
   # GET /tenants/new
   def new
     @tenant = Tenant.new
-    respond_with @tenant
   end
 
   # GET /tenants/1/edit
