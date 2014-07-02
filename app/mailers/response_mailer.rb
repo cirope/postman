@@ -1,5 +1,8 @@
 class ResponseMailer < ActionMailer::Base
+  include Roadie::Rails::Automatic
+
   layout 'mailer'
+
   default from: "'#{I18n.t('app_name')}' <#{ENV['EMAIL_ADDRESS']}>"
 
   def reply to: nil, ticket: nil, body: nil

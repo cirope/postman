@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1.1'
+gem 'rails', '~> 4.1.2'
 
 gem 'pg'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
@@ -16,7 +16,7 @@ gem 'whenever'
 gem 'sidekiq'
 gem 'figaro'
 gem 'rack-mini-profiler'
-gem 'roadie'
+gem 'roadie-rails'
 gem 'newrelic_rpm'
 
 gem 'unicorn'
