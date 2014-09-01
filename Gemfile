@@ -15,7 +15,6 @@ gem 'irreverent'
 gem 'whenever'
 gem 'sidekiq'
 gem 'figaro'
-gem 'rack-mini-profiler'
 gem 'roadie-rails'
 gem 'newrelic_rpm'
 
